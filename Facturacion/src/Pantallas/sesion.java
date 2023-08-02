@@ -8,7 +8,6 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 import java.sql.SQLException;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -17,6 +16,7 @@ import javax.swing.SwingUtilities;
 public class Sesion extends javax.swing.JFrame {
     
     String consulta = "";
+    Menu Menu;
 
     /**
      * Creates new form sesion
@@ -25,15 +25,7 @@ public class Sesion extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        //login();
     }
-    
-    private void login(){
-        
-        
-    }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,11 +67,6 @@ public class Sesion extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\gmurillo\\Desktop\\GitHub\\Facturacion_Atlas\\Facturacion\\src\\Imagenes\\Logo_Atlas.png")); // NOI18N
         jButton2.setBorder(null);
         jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,16 +111,6 @@ public class Sesion extends javax.swing.JFrame {
         user_text.setText("gabrielmur");
         user_text.setToolTipText("");
         user_text.setActionCommand("<Not Set>");
-        user_text.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                borrar_text_user(evt);
-            }
-        });
-        user_text.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                user_textActionPerformed(evt);
-            }
-        });
 
         pass_text.setText("1110");
 
@@ -208,12 +185,9 @@ public class Sesion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void loggin_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggin_buttonActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
         Menu menu = new Menu();
         String user = user_text.getText();
         String pass = pass_text.getText();
@@ -230,10 +204,9 @@ public class Sesion extends javax.swing.JFrame {
                 
                 if (rs.next()){
                     valid_user = true;
+                    String name = rs.getString(2);
+                    nombre = name;
                 }
-               /* rs.close();
-                stat.close();
-                con.close();*/
         }
          catch(ClassNotFoundException | SQLException ex){
         java.util.logging.Logger.getLogger(Sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -241,20 +214,17 @@ public class Sesion extends javax.swing.JFrame {
         if(valid_user){
             System.out.println("Encontrado");
             this.setVisible(false);
+            //Esta seccion originalmente debería estár en el Menu
+            menu.initComponents(nombre);
+            menu.setLocationRelativeTo(null);
+            menu.setResizable(false);
             menu.setVisible(true);
+            
         }
         else{
             System.out.println("No se encontro el usuario");
         }
     }//GEN-LAST:event_loggin_buttonActionPerformed
-
-    private void user_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_textActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_user_textActionPerformed
-
-    private void borrar_text_user(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrar_text_user
-        // TODO add your handling code here:
-    }//GEN-LAST:event_borrar_text_user
 
     /**
      * @param args the command line arguments
