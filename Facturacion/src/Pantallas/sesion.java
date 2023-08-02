@@ -4,25 +4,36 @@
  */
 package Pantallas;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.ResultSet;
+import com.mysql.jdbc.Statement;
+import java.sql.SQLException;
 import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Gmurillo
  */
-public class sesion extends javax.swing.JFrame {
+public class Sesion extends javax.swing.JFrame {
+    
+    String consulta = "";
 
     /**
      * Creates new form sesion
      */
-    public sesion() {
+    public Sesion() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        //login();
     }
+    
+    private void login(){
+        
+        
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,9 +50,7 @@ public class sesion extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        user_label = new javax.swing.JLabel();
         user_text = new javax.swing.JTextField();
-        pass_label = new javax.swing.JLabel();
         pass_text = new javax.swing.JTextField();
         welcome = new javax.swing.JLabel();
         loggin_button = new javax.swing.JButton();
@@ -78,12 +87,12 @@ public class sesion extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,13 +121,21 @@ public class sesion extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        user_label.setText("Usuario:");
+        user_text.setText("gabrielmur");
+        user_text.setToolTipText("");
+        user_text.setActionCommand("<Not Set>");
+        user_text.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                borrar_text_user(evt);
+            }
+        });
+        user_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                user_textActionPerformed(evt);
+            }
+        });
 
-        user_text.setText("jTextField1");
-
-        pass_label.setText("Contraseña:");
-
-        pass_text.setText("jTextField1");
+        pass_text.setText("1110");
 
         welcome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -141,15 +158,9 @@ public class sesion extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(pass_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(user_label, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pass_text, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(user_text, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(loggin_button, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(loggin_button, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(user_text, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pass_text, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -160,15 +171,11 @@ public class sesion extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(user_label, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(user_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(user_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pass_label, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pass_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(pass_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(loggin_button)
                 .addGap(29, 29, 29))
         );
@@ -207,7 +214,47 @@ public class sesion extends javax.swing.JFrame {
 
     private void loggin_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggin_buttonActionPerformed
         // TODO add your handling code here:
+        Menu menu = new Menu();
+        String user = user_text.getText();
+        String pass = pass_text.getText();
+        boolean valid_user = false;
+        try{
+            Connection con = (Connection) ConexionMySQL.obtenerConexion();
+            Statement stat = (Statement) con.createStatement();
+        
+                consulta = "Select * From usuarios where user LIKE '" + user + "' and pass LIKE '" + pass + "'";
+                
+                ResultSet rs = (ResultSet) stat.executeQuery(consulta);
+
+                //rs.first();  
+                
+                if (rs.next()){
+                    valid_user = true;
+                }
+               /* rs.close();
+                stat.close();
+                con.close();*/
+        }
+         catch(ClassNotFoundException | SQLException ex){
+        java.util.logging.Logger.getLogger(Sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        if(valid_user){
+            System.out.println("Encontrado");
+            this.setVisible(false);
+            menu.setVisible(true);
+        }
+        else{
+            System.out.println("No se encontro el usuario");
+        }
     }//GEN-LAST:event_loggin_buttonActionPerformed
+
+    private void user_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_user_textActionPerformed
+
+    private void borrar_text_user(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrar_text_user
+        // TODO add your handling code here:
+    }//GEN-LAST:event_borrar_text_user
 
     /**
      * @param args the command line arguments
@@ -226,23 +273,20 @@ public class sesion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new sesion().setVisible(true);
-                SwingUtilities.invokeLater(() -> {
-            });
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Sesion().setVisible(true);
         });
     }
 
@@ -254,15 +298,12 @@ public class sesion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton loggin_button;
-    private javax.swing.JLabel pass_label;
     private javax.swing.JTextField pass_text;
-    private javax.swing.JLabel user_label;
     private javax.swing.JTextField user_text;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
 
     private static class Jlabel {
-
         public Jlabel() {
         }
     }
