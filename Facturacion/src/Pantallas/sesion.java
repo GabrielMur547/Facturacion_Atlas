@@ -116,7 +116,7 @@ public class Sesion extends javax.swing.JFrame {
 
         welcome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        welcome.setText("BIenvenido");
+        welcome.setText("Bienvenido");
         welcome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         loggin_button.setText("Ingresar");
