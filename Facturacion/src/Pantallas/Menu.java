@@ -14,14 +14,15 @@ public class Menu extends javax.swing.JFrame {
     String name = "hola";
     
     Sesion Sesion;
+    Por_entregar Por_entregar;
     /**
      * Creates new form Menu_principal
      */
     
     public Menu() {
-        //initComponents(name);
-        //this.setLocationRelativeTo(null);
-        //this.setResizable(false);
+        initComponents(name);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
     
     /**
@@ -380,6 +381,10 @@ public class Menu extends javax.swing.JFrame {
     
     private void entre_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entre_buttonActionPerformed
         // TODO add your handling code here:
+        Por_entregar entre = new Por_entregar();
+        
+        entre.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_entre_buttonActionPerformed
 
     private void ruta_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ruta_buttonActionPerformed
