@@ -20,9 +20,9 @@ public class Menu extends javax.swing.JFrame {
      */
     
     public Menu() {
-        initComponents(name);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        //initComponents(name);
+        //this.setLocationRelativeTo(null);
+        //this.setResizable(false);
     }
     
     /**
@@ -65,7 +65,7 @@ public class Menu extends javax.swing.JFrame {
 
         bienvenida_name.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         bienvenida_name.setForeground(new java.awt.Color(253, 215, 0));
-        bienvenida_name.setText("Usuario");
+        bienvenida_name.setText(nombre);
 
         entre_button.setText("Por entregar");
         entre_button.addActionListener(new java.awt.event.ActionListener() {
@@ -381,10 +381,10 @@ public class Menu extends javax.swing.JFrame {
     
     private void entre_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entre_buttonActionPerformed
         // TODO add your handling code here:
-        Por_entregar entre = new Por_entregar();
-        
-        entre.setVisible(true);
+        Por_entregar = new Por_entregar();
+        Por_entregar.Pantallas("admin");
         this.setVisible(false);
+        Por_entregar.setVisible(true);
     }//GEN-LAST:event_entre_buttonActionPerformed
 
     private void ruta_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ruta_buttonActionPerformed

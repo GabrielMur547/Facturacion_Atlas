@@ -11,6 +11,9 @@ package Pantallas;
 public class Por_entregar extends javax.swing.JFrame {
 
     Menu Menu;
+    Sesion Sesion;
+    
+    String pantalla;
     /**
      * Creates new form tet
      */
@@ -20,6 +23,11 @@ public class Por_entregar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
+    
+    public void Pantallas(String pantalla){
+        this.pantalla = pantalla;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -399,10 +407,19 @@ public class Por_entregar extends javax.swing.JFrame {
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
         // TODO add your handling code here:
-        Menu menu = new Menu();
-
-        menu.setVisible(true);
-        this.setVisible(false);
+        if("admin".equals(this.pantalla)){
+            Menu menu = new Menu();
+            menu.initComponents(null);
+            menu.setLocationRelativeTo(null);
+            menu.setResizable(false);
+            menu.setVisible(true);
+            this.setVisible(false);
+        }
+        else if ("entregar".equals(this.pantalla)){
+            Sesion sesion = new Sesion();
+            sesion.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_RegresarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
