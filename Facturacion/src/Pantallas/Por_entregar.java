@@ -4,30 +4,75 @@
  */
 package Pantallas;
 
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.ResultSet;
+import com.mysql.jdbc.Statement;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Gmurillo
  */
 public class Por_entregar extends javax.swing.JFrame {
+    
+    private String buscar = "";
 
     Menu Menu;
     Sesion Sesion;
     
     String pantalla;
+    String factura;
     /**
      * Creates new form tet
      */
     public Por_entregar() {
         initComponents();
+        facturasee();
         System.out.println("Por Entregar");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
     
+    public void buscar_factura(String busca){   
+        buscar = busca;
+        facturasee();
+    }
+    
     public void Pantallas(String pantalla){
         this.pantalla = pantalla;
     }
+      
+    String consulta;
+    String factu;
     
+    public void facturasee(){
+        DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
+                modelo.setRowCount(0);  
+    try{
+        Connection con = (Connection) ConexionMySQL.obtenerConexion();
+        Statement stat = (Statement) con.createStatement();
+            
+        if(buscar.isEmpty()){
+            consulta = "Select * From facturas";
+        }
+        else if (!buscar.isEmpty()){
+            consulta = "Select * From facturas WHERE facturas.InvoiceNumber LIKE '%" + buscar + "%'";
+        }
+        
+        ResultSet rs = (ResultSet) stat.executeQuery(consulta);
+        
+        rs.first();
+        
+        do{ 
+            String[] fila = {rs.getString(1), rs.getString(5), rs.getString(6)};
+                modelo.addRow(fila);
+        }while(rs.next());
+    }
+    catch(ClassNotFoundException | SQLException ex){
+        java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +86,7 @@ public class Por_entregar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabla = new javax.swing.JTable();
+        table_factura = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -74,7 +119,7 @@ public class Por_entregar extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+        table_factura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -93,7 +138,18 @@ public class Por_entregar extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Tabla);
+        table_factura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_facturaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table_factura);
+        if (table_factura.getColumnModel().getColumnCount() > 0) {
+            table_factura.getColumnModel().getColumn(0).setMinWidth(90);
+            table_factura.getColumnModel().getColumn(0).setMaxWidth(150);
+            table_factura.getColumnModel().getColumn(1).setMinWidth(90);
+            table_factura.getColumnModel().getColumn(1).setMaxWidth(150);
+        }
 
         jPanel3.setBackground(new java.awt.Color(0, 40, 87));
 
@@ -145,9 +201,9 @@ public class Por_entregar extends javax.swing.JFrame {
         Buscar_text.setText("Buscar");
 
         Buscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarActionPerformed(evt);
+        Buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                BuscarKeyReleased(evt);
             }
         });
 
@@ -168,6 +224,7 @@ public class Por_entregar extends javax.swing.JFrame {
         Factura_text.setText("Factura");
 
         Factura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Factura.setEnabled(false);
         Factura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FacturaActionPerformed(evt);
@@ -409,9 +466,6 @@ public class Por_entregar extends javax.swing.JFrame {
         // TODO add your handling code here:
         if("admin".equals(this.pantalla)){
             Menu menu = new Menu();
-            menu.initComponents(null);
-            menu.setLocationRelativeTo(null);
-            menu.setResizable(false);
             menu.setVisible(true);
             this.setVisible(false);
         }
@@ -421,10 +475,6 @@ public class Por_entregar extends javax.swing.JFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_RegresarActionPerformed
-
-    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BuscarActionPerformed
 
     private void FacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturaActionPerformed
         // TODO add your handling code here:
@@ -461,6 +511,45 @@ public class Por_entregar extends javax.swing.JFrame {
     private void Enviar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Enviar_buttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Enviar_buttonActionPerformed
+
+    private void BuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BuscarKeyReleased
+        // TODO add your handling code here:
+        String nuevobuscar = Buscar.getText();
+        this.buscar_factura(nuevobuscar);
+    }//GEN-LAST:event_BuscarKeyReleased
+
+    private void table_facturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_facturaMouseClicked
+        // TODO add your handling code here:
+        
+        int lista = table_factura.getSelectedRow();
+        String fa = table_factura.getValueAt(lista, 0).toString();
+        
+        try{
+            Connection con = (Connection) ConexionMySQL.obtenerConexion();
+            Statement stat = (Statement) con.createStatement();
+
+            consulta = "Select * From facturas WHERE facturas.InvoiceNumber LIKE '%" + fa + "%'";
+
+            ResultSet rs = (ResultSet) stat.executeQuery(consulta);
+
+            rs.first();
+
+            Factura.setText(rs.getString(1));
+            Cuenta.setText(rs.getString(2));
+            Nombre.setText(rs.getString(3));
+            Fiscal.setText(rs.getString(4));
+            Monto.setText(rs.getString(5));
+            Transaccion.setText(rs.getString(6));
+            Observacion_text_big.setText(rs.getString(7));
+            Estado.setText(rs.getString(9));
+            Fecha.setText(rs.getString(11));
+        }
+        catch(ClassNotFoundException | SQLException ex){
+            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_table_facturaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -519,7 +608,6 @@ public class Por_entregar extends javax.swing.JFrame {
     private javax.swing.JLabel Observacion_text;
     private javax.swing.JTextArea Observacion_text_big;
     private javax.swing.JButton Regresar;
-    private javax.swing.JTable Tabla;
     private javax.swing.JTextField Transaccion;
     private javax.swing.JLabel Transaccion_text;
     private javax.swing.JButton jButton2;
@@ -530,5 +618,6 @@ public class Por_entregar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable table_factura;
     // End of variables declaration//GEN-END:variables
 }

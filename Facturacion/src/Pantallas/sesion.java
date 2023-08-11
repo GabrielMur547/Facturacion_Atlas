@@ -16,8 +16,8 @@ import java.sql.SQLException;
 public class Sesion extends javax.swing.JFrame {
     
     String consulta = "";
-    Menu Menu;
     Por_entregar Por_entregar;
+    Bienvenida Bienvenida;
 
     /**
      * Creates new form sesion
@@ -202,11 +202,9 @@ public class Sesion extends javax.swing.JFrame {
 
     private void loggin_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggin_buttonActionPerformed
         // TODO add your handling code here:
-        String nombre = "";
-        Menu menu = new Menu();
+        Bienvenida bienvenida = new Bienvenida();
         String user = user_text.getText();
         String pass = pass_text.getText();
-        boolean valid_user = false;
         try{
             Connection con = (Connection) ConexionMySQL.obtenerConexion();
             Statement stat = (Statement) con.createStatement();
@@ -220,10 +218,10 @@ public class Sesion extends javax.swing.JFrame {
                 if (rs.next()){
                     if("1".equals(rs.getString(5))){
                         String name = rs.getString(2);
-                        menu.initComponents(name);
-                        menu.setLocationRelativeTo(null);
-                        menu.setResizable(false);
-                        menu.setVisible(true);
+                        bienvenida.initComponents(name);
+                        bienvenida.setLocationRelativeTo(null);
+                        bienvenida.setResizable(false);
+                        bienvenida.setVisible(true);
                         this.setVisible(false);
                     }
                     else if("1".equals(rs.getString(6))){
