@@ -235,6 +235,7 @@ public class Por_entregar extends javax.swing.JFrame {
         Cuenta_text.setText("Cuenta");
 
         Cuenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Cuenta.setEnabled(false);
         Cuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CuentaActionPerformed(evt);
@@ -245,6 +246,7 @@ public class Por_entregar extends javax.swing.JFrame {
         Nombre_text.setText("Nombre");
 
         Nombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Nombre.setEnabled(false);
         Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreActionPerformed(evt);
@@ -255,6 +257,7 @@ public class Por_entregar extends javax.swing.JFrame {
         Fiscal_text.setText("Fiscal");
 
         Fiscal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Fiscal.setEnabled(false);
         Fiscal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FiscalActionPerformed(evt);
@@ -265,6 +268,7 @@ public class Por_entregar extends javax.swing.JFrame {
         Monto_text.setText("Monto");
 
         Monto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Monto.setEnabled(false);
         Monto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MontoActionPerformed(evt);
@@ -272,6 +276,7 @@ public class Por_entregar extends javax.swing.JFrame {
         });
 
         Transaccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Transaccion.setEnabled(false);
         Transaccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TransaccionActionPerformed(evt);
@@ -305,6 +310,7 @@ public class Por_entregar extends javax.swing.JFrame {
         Observacion_text.setText("Observación");
 
         Observacion_text_big.setColumns(20);
+        Observacion_text_big.setLineWrap(true);
         Observacion_text_big.setRows(5);
         jScrollPane2.setViewportView(Observacion_text_big);
 
