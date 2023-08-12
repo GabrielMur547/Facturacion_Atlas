@@ -57,7 +57,7 @@ public class Por_entregar extends javax.swing.JFrame {
             consulta = "Select * From facturas";
         }
         else if (!buscar.isEmpty()){
-            consulta = "Select * From facturas WHERE facturas.InvoiceNumber LIKE '%" + buscar + "%'";
+            consulta = "Select * From facturas WHERE facturas.InvoiceNumber LIKE '%" + buscar + "%' OR facturas.DeptorNumber LIKE '%" + buscar + "%' OR facturas.cmp_name LIKE '%" + buscar + "%'";
         }
         
         ResultSet rs = (ResultSet) stat.executeQuery(consulta);
