@@ -106,15 +106,20 @@ public class Sesion extends javax.swing.JFrame {
         jLabel2.setText("Usuario:");
 
         user_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        user_text.setText("gabrielmur");
+        user_text.setText("santosgon");
         user_text.setToolTipText("");
         user_text.setActionCommand("<Not Set>");
+        user_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                user_textActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Contraseña:");
 
         pass_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        pass_text.setText("1110");
+        pass_text.setText("1111");
 
         loggin_button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         loggin_button.setText("Ingresar");
@@ -239,6 +244,10 @@ public class Sesion extends javax.swing.JFrame {
         java.util.logging.Logger.getLogger(Sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_loggin_buttonActionPerformed
+
+    private void user_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_user_textActionPerformed
 
     /**
      * @param args the command line arguments

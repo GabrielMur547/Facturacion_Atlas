@@ -8,6 +8,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 import java.sql.SQLException;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -65,7 +66,7 @@ public class Por_entregar extends javax.swing.JFrame {
         rs.first();
         
         do{ 
-            String[] fila = {rs.getString(1), rs.getString(5), rs.getString(6)};
+            String[] fila = {rs.getString(1), rs.getString(2), rs.getString(3)};
                 modelo.addRow(fila);
         }while(rs.next());
     }
@@ -180,7 +181,7 @@ public class Por_entregar extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Regresar)
-                .addGap(22, 22, 22))
+                .addGap(15, 15, 15))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,18 +392,18 @@ public class Por_entregar extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Buscar_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Buscar))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Factura_text)
-                        .addComponent(Factura)
-                        .addComponent(Cuenta_text)
-                        .addComponent(Cuenta)
-                        .addComponent(Nombre_text)
-                        .addComponent(Nombre)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Factura_text)
+                            .addComponent(Factura)
+                            .addComponent(Cuenta_text)
+                            .addComponent(Cuenta)
+                            .addComponent(Nombre_text)
+                            .addComponent(Nombre)))
+                    .addComponent(Buscar_text))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -526,8 +527,7 @@ public class Por_entregar extends javax.swing.JFrame {
 
     private void table_facturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_facturaMouseClicked
         // TODO add your handling code here:
-        
-        int lista = table_factura.getSelectedRow();
+         int lista = table_factura.getSelectedRow();
         String fa = table_factura.getValueAt(lista, 0).toString();
         
         try{
@@ -547,14 +547,12 @@ public class Por_entregar extends javax.swing.JFrame {
             Monto.setText(rs.getString(5));
             Transaccion.setText(rs.getString(6));
             Observacion_text_big.setText(rs.getString(7));
-            Estado.setText(rs.getString(9));
-            Fecha.setText(rs.getString(11));
+            Estado.setText(rs.getString(8));
+            Fecha.setText(rs.getString(9));
         }
         catch(ClassNotFoundException | SQLException ex){
             java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-        
     }//GEN-LAST:event_table_facturaMouseClicked
 
     /**
