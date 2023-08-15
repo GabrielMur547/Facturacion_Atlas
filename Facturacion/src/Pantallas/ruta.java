@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Gmurillo
  */
-public class ruta extends javax.swing.JFrame {
+public class Ruta extends javax.swing.JFrame {
     
     private String buscar = "";
 
@@ -27,7 +27,7 @@ public class ruta extends javax.swing.JFrame {
     /**
      * Creates new form tet
      */
-    public ruta() {
+    public Ruta() {
         initComponents();
         facturasee();
         System.out.println("Por Entregar");
@@ -55,10 +55,10 @@ public class ruta extends javax.swing.JFrame {
         Statement stat = (Statement) con.createStatement();
             
         if(buscar.isEmpty()){
-            consulta = "Select * From facturas";
+            consulta = "Select * From ruta";
         }
         else if (!buscar.isEmpty()){
-            consulta = "Select * From facturas WHERE facturas.InvoiceNumber LIKE '%" + buscar + "%' OR facturas.DeptorNumber LIKE '%" + buscar + "%' OR facturas.cmp_name LIKE '%" + buscar + "%'";
+            consulta = "Select * From ruta WHERE ruta.InvoiceNumber LIKE '%" + buscar + "%' OR ruta.DeptorNumber LIKE '%" + buscar + "%' OR ruta.cmp_name LIKE '%" + buscar + "%'";
         }
         
         ResultSet rs = (ResultSet) stat.executeQuery(consulta);
@@ -71,7 +71,7 @@ public class ruta extends javax.swing.JFrame {
         }while(rs.next());
     }
     catch(ClassNotFoundException | SQLException ex){
-        java.util.logging.Logger.getLogger(ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(Ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
 }
 
@@ -161,7 +161,7 @@ public class ruta extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(253, 215, 0));
-        jLabel1.setText("FACTURAS POR ENTREGAR");
+        jLabel1.setText("FACTURAS EN RUTA");
 
         Regresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Regresar.setText("Regresar");
@@ -178,7 +178,7 @@ public class ruta extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134)
+                .addGap(195, 195, 195)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Regresar)
@@ -362,12 +362,9 @@ public class ruta extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Observacion_text)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Observacion_text))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -559,7 +556,7 @@ public class ruta extends javax.swing.JFrame {
             Fecha.setCaretPosition(0);
         }
         catch(ClassNotFoundException | SQLException ex){
-            java.util.logging.Logger.getLogger(ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_table_facturaMouseClicked
 
@@ -580,14 +577,18 @@ public class ruta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -596,7 +597,7 @@ public class ruta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ruta().setVisible(true);
+                new Ruta().setVisible(true);
             }
         });
     }

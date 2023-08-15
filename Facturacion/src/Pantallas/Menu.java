@@ -12,6 +12,7 @@ package Pantallas;
 public class Menu extends javax.swing.JFrame {
 
     Por_entregar Por_entregar;
+    Ruta Ruta;
     /**
      * Creates new form Menu_principal
      */
@@ -197,6 +198,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void ruta_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ruta_buttonActionPerformed
         // TODO add your handling code here:
+        Ruta = new Ruta();
+        Ruta.Pantallas("admin");
+        this.setVisible(false);
+        Ruta.setVisible(true);
     }//GEN-LAST:event_ruta_buttonActionPerformed
 
     private void por_pre_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_por_pre_buttonActionPerformed

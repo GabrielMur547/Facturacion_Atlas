@@ -8,6 +8,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 
@@ -48,6 +49,17 @@ public class Por_entregar extends javax.swing.JFrame {
     String factu;
     
     public void facturasee(){
+                        
+        Factura.setText(null);
+        Cuenta.setText(null);
+        Nombre.setText(null);
+        Fiscal.setText(null);
+        Monto.setText(null);
+        Transaccion.setText(null);
+        Observacion_text_big.setText( null);
+        Estado.setText(null);
+        Fecha.setText(null);
+        
         DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
                 modelo.setRowCount(0);  
     try{
@@ -84,6 +96,7 @@ public class Por_entregar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -115,6 +128,8 @@ public class Por_entregar extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         Observacion_text_big = new javax.swing.JTextArea();
         Enviar_button = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -362,12 +377,9 @@ public class Por_entregar extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Observacion_text)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Observacion_text))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -516,6 +528,41 @@ public class Por_entregar extends javax.swing.JFrame {
 
     private void Enviar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Enviar_buttonActionPerformed
         // TODO add your handling code here:
+        int lista = table_factura.getSelectedRow();
+        String fa = table_factura.getValueAt(lista, 0).toString();
+        
+        DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
+        modelo.setRowCount(0);  
+        try{
+            Connection con = (Connection) ConexionMySQL.obtenerConexion();
+            Statement stat = (Statement) con.createStatement();
+
+            String verificacion = "SELECT InvoiceNumber FROM ruta WHERE InvoiceNumber = '" + fa + "'";
+            ResultSet resultadoVerificacion = (ResultSet) stat.executeQuery(verificacion);
+
+            if (!resultadoVerificacion.next()) {
+                // No existe un registro con el mismo InvoiceNumber, realizar la inserción
+                consulta =  """
+                    INSERT INTO ruta (InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha)
+                    SELECT InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, '%s' AS Observacion, '%s' AS Estatus, DATE, Seccion, DueDate, '%s' AS Fecha
+                    FROM facturas WHERE InvoiceNumber LIKE '%%%s%%';
+                """.formatted(Observacion_text_big.getText(),Estado.getText(),Fecha.getText(), fa);
+
+                int filasAfectadas = stat.executeUpdate(consulta);
+                
+                facturasee();
+            } else {
+                System.out.println("Esta factura ya fue enviada a la ruta.");
+                facturasee();
+                
+                JOptionPane.showMessageDialog(null, "Esta factura ya fue enviada a la ruta.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+
+        }
+        catch(ClassNotFoundException | SQLException ex){
+            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Enviar_buttonActionPerformed
 
     private void BuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BuscarKeyReleased
@@ -526,7 +573,7 @@ public class Por_entregar extends javax.swing.JFrame {
 
     private void table_facturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_facturaMouseClicked
         // TODO add your handling code here:
-         int lista = table_factura.getSelectedRow();
+        int lista = table_factura.getSelectedRow();
         String fa = table_factura.getValueAt(lista, 0).toString();
         
         try{
@@ -623,6 +670,7 @@ public class Por_entregar extends javax.swing.JFrame {
     private javax.swing.JTextField Transaccion;
     private javax.swing.JLabel Transaccion_text;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
