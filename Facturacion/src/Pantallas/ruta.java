@@ -135,9 +135,16 @@ public class Ruta extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         table_factura.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -554,8 +561,7 @@ public class Ruta extends javax.swing.JFrame {
             Estado.setCaretPosition(0);
             Fecha.setText(rs.getString(9));
             Fecha.setCaretPosition(0);
-        }
-        catch(ClassNotFoundException | SQLException ex){
+        }        catch(ClassNotFoundException | SQLException ex){
             java.util.logging.Logger.getLogger(Ruta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_table_facturaMouseClicked
