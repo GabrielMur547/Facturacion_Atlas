@@ -96,11 +96,6 @@ public class Por_entregar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_factura = new javax.swing.JTable();
@@ -133,15 +128,8 @@ public class Por_entregar extends javax.swing.JFrame {
         Enviar_button = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("jButton1");
-
-        jButton3.setText("jButton3");
-
-        jButton4.setText("jButton4");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 460));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(1000, 460));
@@ -212,9 +200,9 @@ public class Por_entregar extends javax.swing.JFrame {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(132, 132, 132)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
                 .addComponent(Regresar)
-                .addGap(47, 47, 47))
+                .addGap(20, 20, 20))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,26 +363,23 @@ public class Por_entregar extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Nombre_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Factura_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(Factura)))
                             .addComponent(jScrollPane2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(Nombre_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Factura_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(Fiscal_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Estado_text, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Estado)
+                                    .addComponent(Fiscal)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(Fiscal_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(Estado_text, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(1, 1, 1)))
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Estado, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(Fiscal))))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                            .addComponent(Factura))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -415,11 +400,9 @@ public class Por_entregar extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(Cuenta_text)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Observacion_text)
-                        .addContainerGap())))
+                                .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(Observacion_text))
+                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -478,17 +461,6 @@ public class Por_entregar extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -496,20 +468,101 @@ public class Por_entregar extends javax.swing.JFrame {
             .addGap(0, 1000, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGap(0, 462, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        facturasee();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void Enviar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Enviar_buttonActionPerformed
+        // TODO add your handling code here:
+        int lista = table_factura.getSelectedRow();
+        String fa = table_factura.getValueAt(lista, 0).toString();
+
+        DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
+        modelo.setRowCount(0);
+        try{
+            Connection con = (Connection) ConexionMySQL.obtenerConexion();
+            Statement stat = (Statement) con.createStatement();
+
+            String verificacion = "SELECT InvoiceNumber FROM ruta WHERE InvoiceNumber = '" + fa + "'";
+            ResultSet resultadoVerificacion = (ResultSet) stat.executeQuery(verificacion);
+
+            if (!resultadoVerificacion.next()) {
+                // No existe un registro con el mismo InvoiceNumber, realizar la inserción
+                consulta =  """
+                INSERT INTO ruta (InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha)
+                SELECT InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, '%s' AS Observacion, '%s' AS Estatus, DATE, Seccion, DueDate, '%s' AS Fecha
+                FROM facturas WHERE InvoiceNumber LIKE '%%%s%%';
+                """.formatted(Observacion_text_big.getText(),Estado.getText(),Fecha.getText(), fa);
+
+                int filasAfectadas = stat.executeUpdate(consulta);
+
+                facturasee();
+            } else {
+                System.out.println("Esta factura ya fue enviada a la ruta.");
+                facturasee();
+
+                JOptionPane.showMessageDialog(null, "Esta factura ya fue enviada a la ruta.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        catch(ClassNotFoundException | SQLException ex){
+            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Enviar_buttonActionPerformed
+
+    private void EstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EstadoActionPerformed
+
+    private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FechaActionPerformed
+
+    private void TransaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransaccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TransaccionActionPerformed
+
+    private void MontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MontoActionPerformed
+
+    private void FiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiscalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FiscalActionPerformed
+
+    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreActionPerformed
+
+    private void CuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CuentaActionPerformed
+
+    private void FacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FacturaActionPerformed
+
+    private void BuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BuscarKeyReleased
+        // TODO add your handling code here:
+        String nuevobuscar = Buscar.getText();
+        this.buscar_factura(nuevobuscar);
+    }//GEN-LAST:event_BuscarKeyReleased
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
         // TODO add your handling code here:
@@ -525,88 +578,11 @@ public class Por_entregar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RegresarActionPerformed
 
-    private void FacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FacturaActionPerformed
-
-    private void CuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CuentaActionPerformed
-
-    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreActionPerformed
-
-    private void FiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiscalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FiscalActionPerformed
-
-    private void MontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MontoActionPerformed
-
-    private void TransaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransaccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TransaccionActionPerformed
-
-    private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaActionPerformed
-
-    private void EstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EstadoActionPerformed
-
-    private void Enviar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Enviar_buttonActionPerformed
-        // TODO add your handling code here:
-        int lista = table_factura.getSelectedRow();
-        String fa = table_factura.getValueAt(lista, 0).toString();
-        
-        DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
-        modelo.setRowCount(0);  
-        try{
-            Connection con = (Connection) ConexionMySQL.obtenerConexion();
-            Statement stat = (Statement) con.createStatement();
-
-            String verificacion = "SELECT InvoiceNumber FROM ruta WHERE InvoiceNumber = '" + fa + "'";
-            ResultSet resultadoVerificacion = (ResultSet) stat.executeQuery(verificacion);
-
-            if (!resultadoVerificacion.next()) {
-                // No existe un registro con el mismo InvoiceNumber, realizar la inserción
-                consulta =  """
-                    INSERT INTO ruta (InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha)
-                    SELECT InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, '%s' AS Observacion, '%s' AS Estatus, DATE, Seccion, DueDate, '%s' AS Fecha
-                    FROM facturas WHERE InvoiceNumber LIKE '%%%s%%';
-                """.formatted(Observacion_text_big.getText(),Estado.getText(),Fecha.getText(), fa);
-
-                int filasAfectadas = stat.executeUpdate(consulta);
-                
-                facturasee();
-            } else {
-                System.out.println("Esta factura ya fue enviada a la ruta.");
-                facturasee();
-                
-                JOptionPane.showMessageDialog(null, "Esta factura ya fue enviada a la ruta.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            
-
-        }
-        catch(ClassNotFoundException | SQLException ex){
-            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_Enviar_buttonActionPerformed
-
-    private void BuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BuscarKeyReleased
-        // TODO add your handling code here:
-        String nuevobuscar = Buscar.getText();
-        this.buscar_factura(nuevobuscar);
-    }//GEN-LAST:event_BuscarKeyReleased
-
     private void table_facturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_facturaMouseClicked
         // TODO add your handling code here:
         int lista = table_factura.getSelectedRow();
         String fa = table_factura.getValueAt(lista, 0).toString();
-        
+
         try{
             Connection con = (Connection) ConexionMySQL.obtenerConexion();
             Statement stat = (Statement) con.createStatement();
@@ -640,11 +616,6 @@ public class Por_entregar extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_table_facturaMouseClicked
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        facturasee();
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -705,14 +676,9 @@ public class Por_entregar extends javax.swing.JFrame {
     private javax.swing.JButton Regresar;
     private javax.swing.JTextField Transaccion;
     private javax.swing.JLabel Transaccion_text;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

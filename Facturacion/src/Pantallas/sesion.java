@@ -7,6 +7,7 @@ package Pantallas;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 
 /**
@@ -26,6 +27,7 @@ public class Sesion extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/Logo_Atlas.png")));
     }
 
     /**
@@ -38,6 +40,7 @@ public class Sesion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -48,11 +51,23 @@ public class Sesion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         pass_text = new javax.swing.JTextField();
         loggin_button = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel5.setBackground(new java.awt.Color(0, 40, 87));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
 
         jPanel1.setBackground(new java.awt.Color(0, 40, 87));
 
@@ -128,19 +143,6 @@ public class Sesion extends javax.swing.JFrame {
                 loggin_buttonActionPerformed(evt);
             }
         });
-
-        jPanel5.setBackground(new java.awt.Color(0, 40, 87));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
