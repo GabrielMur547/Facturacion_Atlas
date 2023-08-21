@@ -57,8 +57,8 @@ public class Por_entregar extends javax.swing.JFrame {
         Monto.setText(null);
         Transaccion.setText(null);
         Observacion_text_big.setText( null);
-        Estado.setText(null);
-        Fecha.setText(null);
+        Estado.setSelectedItem(null);
+        Fecha.setDate(null);
         
         DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
                 modelo.setRowCount(0);  
@@ -96,10 +96,6 @@ public class Por_entregar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -124,22 +120,14 @@ public class Por_entregar extends javax.swing.JFrame {
         Transaccion = new javax.swing.JTextField();
         Transaccion_text = new javax.swing.JLabel();
         Estado_text = new javax.swing.JLabel();
-        Fecha = new javax.swing.JTextField();
         Fecha_text = new javax.swing.JLabel();
-        Estado = new javax.swing.JTextField();
         Observacion_text = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Observacion_text_big = new javax.swing.JTextArea();
         Enviar_button = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("jButton1");
-
-        jButton3.setText("jButton3");
-
-        jButton4.setText("jButton4");
+        Estado = new javax.swing.JComboBox<>();
+        Fecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -212,7 +200,7 @@ public class Por_entregar extends javax.swing.JFrame {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(132, 132, 132)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Regresar)
                 .addGap(47, 47, 47))
         );
@@ -319,20 +307,8 @@ public class Por_entregar extends javax.swing.JFrame {
         Estado_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Estado_text.setText("Estado");
 
-        Fecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaActionPerformed(evt);
-            }
-        });
-
         Fecha_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Fecha_text.setText("Fecha de presentación");
-
-        Estado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EstadoActionPerformed(evt);
-            }
-        });
+        Fecha_text.setText("Fechapre sentación");
 
         Observacion_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Observacion_text.setText("Observación");
@@ -357,6 +333,18 @@ public class Por_entregar extends javax.swing.JFrame {
             }
         });
 
+        Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por entregar", "En ruta", "Entregado", "Multa", "Sin información", "No encontrado" }));
+        Estado.setEnabled(false);
+        Estado.setFocusable(false);
+        Estado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EstadoActionPerformed(evt);
+            }
+        });
+
+        Fecha.setToolTipText("22/10/2023");
+        Fecha.setDateFormatString("d/M/yyyy");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -374,51 +362,50 @@ public class Por_entregar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Observacion_text)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(Nombre_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Factura_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(Estado_text, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Fiscal_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Nombre_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Factura_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Estado_text, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Fiscal_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Fiscal, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(Factura)
                             .addComponent(Nombre)
-                            .addComponent(Estado))
+                            .addComponent(Estado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(21, 21, 21)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(Transaccion_text)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Transaccion))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Cuenta_text)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Fecha_text)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Cuenta_text)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Monto_text)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Monto_text)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Fecha_text)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Fecha)))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64)
+                                .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Observacion_text))
+                        .addGap(0, 66, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,12 +427,10 @@ public class Por_entregar extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Nombre)
-                                    .addComponent(Monto_text)
-                                    .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Nombre)
+                                .addComponent(Monto_text)
+                                .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(Nombre_text)
                                 .addGap(28, 28, 28)))
@@ -456,17 +441,20 @@ public class Por_entregar extends javax.swing.JFrame {
                             .addComponent(Transaccion_text)
                             .addComponent(Transaccion))
                         .addGap(29, 29, 29)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Fecha_text)
-                            .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Estado)
-                            .addComponent(Estado_text))
-                        .addGap(18, 18, 18)
-                        .addComponent(Observacion_text)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Fecha_text)
+                                .addComponent(Estado_text)
+                                .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(Observacion_text)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -477,18 +465,18 @@ public class Por_entregar extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, 1002, 1002, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 1002, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -496,7 +484,7 @@ public class Por_entregar extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGap(0, 464, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -544,14 +532,6 @@ public class Por_entregar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TransaccionActionPerformed
 
-    private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaActionPerformed
-
-    private void EstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EstadoActionPerformed
-
     private void Enviar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Enviar_buttonActionPerformed
         // TODO add your handling code here:
         int lista = table_factura.getSelectedRow();
@@ -567,12 +547,13 @@ public class Por_entregar extends javax.swing.JFrame {
             ResultSet resultadoVerificacion = (ResultSet) stat.executeQuery(verificacion);
 
             if (!resultadoVerificacion.next()) {
+                System.out.println(Fecha.getDateEditor());
                 // No existe un registro con el mismo InvoiceNumber, realizar la inserción
                 consulta =  """
                     INSERT INTO ruta (InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha)
                     SELECT InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, '%s' AS Observacion, '%s' AS Estatus, DATE, Seccion, DueDate, '%s' AS Fecha
                     FROM facturas WHERE InvoiceNumber LIKE '%%%s%%';
-                """.formatted(Observacion_text_big.getText(),Estado.getText(),Fecha.getText(), fa);
+                """.formatted(Observacion_text_big.getText(),Estado.getSelectedItem(),Fecha.getDate(), fa);
 
                 int filasAfectadas = stat.executeUpdate(consulta);
                 
@@ -626,10 +607,27 @@ public class Por_entregar extends javax.swing.JFrame {
             Transaccion.setCaretPosition(0);
             Observacion_text_big.setText(rs.getString(7));
             Observacion_text_big.setCaretPosition(0);
-            Estado.setText(rs.getString(8));
-            Estado.setCaretPosition(0);
-            Fecha.setText(rs.getString(9));
-            Fecha.setCaretPosition(0);
+            if ("Por entregar".equals(rs.getString(8))){
+                Estado.setSelectedIndex(0);
+            }
+            else if ("En ruta".equals(rs.getString(8))){
+                Estado.setSelectedIndex(1);
+            }
+            else if ("Entregado".equals(rs.getString(8))){
+                Estado.setSelectedIndex(2);
+            }
+            else if ("Multa".equals(rs.getString(8)) || "multa".equals(rs.getString(8)) || "MULTA".equals(rs.getString(8))){
+                Estado.setSelectedIndex(3);
+            }
+            else if ("Sin informacion".equals(rs.getString(8))){
+                Estado.setSelectedIndex(4);
+            }
+            else{
+                Estado.setSelectedIndex(5);
+            }
+           // Estado.setCaretPosition(0);
+            //Fecha.setDate(rs.getString(9));
+            //Fecha.setCaretPosition(0);
         }
         catch(ClassNotFoundException | SQLException ex){
             java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -640,6 +638,10 @@ public class Por_entregar extends javax.swing.JFrame {
         // TODO add your handling code here:
         facturasee();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void EstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EstadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -683,11 +685,11 @@ public class Por_entregar extends javax.swing.JFrame {
     private javax.swing.JTextField Cuenta;
     private javax.swing.JLabel Cuenta_text;
     private javax.swing.JButton Enviar_button;
-    private javax.swing.JTextField Estado;
+    private javax.swing.JComboBox<String> Estado;
     private javax.swing.JLabel Estado_text;
     private javax.swing.JTextField Factura;
     private javax.swing.JLabel Factura_text;
-    private javax.swing.JTextField Fecha;
+    private com.toedter.calendar.JDateChooser Fecha;
     private javax.swing.JLabel Fecha_text;
     private javax.swing.JTextField Fiscal;
     private javax.swing.JLabel Fiscal_text;
@@ -700,12 +702,8 @@ public class Por_entregar extends javax.swing.JFrame {
     private javax.swing.JButton Regresar;
     private javax.swing.JTextField Transaccion;
     private javax.swing.JLabel Transaccion_text;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
