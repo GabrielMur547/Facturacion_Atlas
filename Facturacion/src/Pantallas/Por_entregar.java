@@ -165,6 +165,11 @@ public class Por_entregar extends javax.swing.JFrame {
                 table_facturaMouseClicked(evt);
             }
         });
+        table_factura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                table_facturaKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_factura);
         if (table_factura.getColumnModel().getColumnCount() > 0) {
             table_factura.getColumnModel().getColumn(0).setMinWidth(90);
@@ -247,59 +252,29 @@ public class Por_entregar extends javax.swing.JFrame {
         Factura.setEditable(false);
         Factura.setEnabled(false);
         Factura.setFocusable(false);
-        Factura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FacturaActionPerformed(evt);
-            }
-        });
 
         Cuenta_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Cuenta_text.setText("Cuenta");
 
         Cuenta.setEnabled(false);
-        Cuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CuentaActionPerformed(evt);
-            }
-        });
 
         Nombre_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Nombre_text.setText("Nombre");
 
         Nombre.setAutoscrolls(false);
         Nombre.setEnabled(false);
-        Nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreActionPerformed(evt);
-            }
-        });
 
         Fiscal_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Fiscal_text.setText("Fiscal");
 
         Fiscal.setEnabled(false);
-        Fiscal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FiscalActionPerformed(evt);
-            }
-        });
 
         Monto_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Monto_text.setText("Monto");
 
         Monto.setEnabled(false);
-        Monto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MontoActionPerformed(evt);
-            }
-        });
 
         Transaccion.setEnabled(false);
-        Transaccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TransaccionActionPerformed(evt);
-            }
-        });
 
         Transaccion_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Transaccion_text.setText("Transacción");
@@ -308,7 +283,7 @@ public class Por_entregar extends javax.swing.JFrame {
         Estado_text.setText("Estado");
 
         Fecha_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Fecha_text.setText("Fechapre sentación");
+        Fecha_text.setText("Fecha presentación");
 
         Observacion_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Observacion_text.setText("Observación");
@@ -336,11 +311,6 @@ public class Por_entregar extends javax.swing.JFrame {
         Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por entregar", "En ruta", "Entregado", "Multa", "Sin información", "No encontrado" }));
         Estado.setEnabled(false);
         Estado.setFocusable(false);
-        Estado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EstadoActionPerformed(evt);
-            }
-        });
 
         Fecha.setToolTipText("22/10/2023");
         Fecha.setDateFormatString("d/M/yyyy");
@@ -508,30 +478,6 @@ public class Por_entregar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RegresarActionPerformed
 
-    private void FacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FacturaActionPerformed
-
-    private void CuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CuentaActionPerformed
-
-    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreActionPerformed
-
-    private void FiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiscalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FiscalActionPerformed
-
-    private void MontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MontoActionPerformed
-
-    private void TransaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransaccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TransaccionActionPerformed
-
     private void Enviar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Enviar_buttonActionPerformed
         // TODO add your handling code here:
         int lista = table_factura.getSelectedRow();
@@ -564,8 +510,7 @@ public class Por_entregar extends javax.swing.JFrame {
                 
                 JOptionPane.showMessageDialog(null, "Esta factura ya fue enviada a la ruta.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
-
+           
         }
         catch(ClassNotFoundException | SQLException ex){
             java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -639,9 +584,61 @@ public class Por_entregar extends javax.swing.JFrame {
         facturasee();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void EstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoActionPerformed
+    private void table_facturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_facturaKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EstadoActionPerformed
+        int lista = table_factura.getSelectedRow();
+        String fa = table_factura.getValueAt(lista, 0).toString();
+        
+        try{
+            Connection con = (Connection) ConexionMySQL.obtenerConexion();
+            Statement stat = (Statement) con.createStatement();
+
+            consulta = "Select * From facturas WHERE facturas.InvoiceNumber LIKE '%" + fa + "%'";
+
+            ResultSet rs = (ResultSet) stat.executeQuery(consulta);
+
+            rs.first();
+
+            Factura.setText(rs.getString(1));
+            Factura.setCaretPosition(0);
+            Cuenta.setText(rs.getString(2));
+            Cuenta.setCaretPosition(0);
+            Nombre.setText(rs.getString(3));
+            Nombre.setCaretPosition(0);
+            Fiscal.setText(rs.getString(4));
+            Fiscal.setCaretPosition(0);
+            Monto.setText(rs.getString(5));
+            Monto.setCaretPosition(0);
+            Transaccion.setText(rs.getString(6));
+            Transaccion.setCaretPosition(0);
+            Observacion_text_big.setText(rs.getString(7));
+            Observacion_text_big.setCaretPosition(0);
+            if ("Por entregar".equals(rs.getString(8))){
+                Estado.setSelectedIndex(0);
+            }
+            else if ("En ruta".equals(rs.getString(8))){
+                Estado.setSelectedIndex(1);
+            }
+            else if ("Entregado".equals(rs.getString(8))){
+                Estado.setSelectedIndex(2);
+            }
+            else if ("Multa".equals(rs.getString(8)) || "multa".equals(rs.getString(8)) || "MULTA".equals(rs.getString(8))){
+                Estado.setSelectedIndex(3);
+            }
+            else if ("Sin informacion".equals(rs.getString(8))){
+                Estado.setSelectedIndex(4);
+            }
+            else{
+                Estado.setSelectedIndex(5);
+            }
+           // Estado.setCaretPosition(0);
+            //Fecha.setDate(rs.getString(9));
+            //Fecha.setCaretPosition(0);
+        }
+        catch(ClassNotFoundException | SQLException ex){
+            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_table_facturaKeyPressed
 
     /**
      * @param args the command line arguments
