@@ -504,7 +504,9 @@ public class Por_entregar extends javax.swing.JFrame {
                 int filasAfectadas = stat.executeUpdate(consulta);
                 
                 facturasee();
-            } else {
+                JOptionPane.showMessageDialog(null, "La factura fue enviada exitosamente a la ruta.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } 
+            else {
                 System.out.println("Esta factura ya fue enviada a la ruta.");
                 facturasee();
                 
