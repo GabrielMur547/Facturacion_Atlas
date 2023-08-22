@@ -7,7 +7,10 @@ package Pantallas;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
+import com.toedter.calendar.JCalendar;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
@@ -493,17 +496,24 @@ public class Por_entregar extends javax.swing.JFrame {
             ResultSet resultadoVerificacion = (ResultSet) stat.executeQuery(verificacion);
 
             if (!resultadoVerificacion.next()) {
-                System.out.println(Fecha.getDateEditor());
+
+                Date fecha = Fecha.getDate();
+                
+                SimpleDateFormat formato = new SimpleDateFormat("d/M/yyyy");
+                String fechaFormateada = formato.format(fecha);
                 // No existe un registro con el mismo InvoiceNumber, realizar la inserción
                 consulta =  """
                     INSERT INTO ruta (InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha)
                     SELECT InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, '%s' AS Observacion, '%s' AS Estatus, DATE, Seccion, DueDate, '%s' AS Fecha
                     FROM facturas WHERE InvoiceNumber LIKE '%%%s%%';
-                """.formatted(Observacion_text_big.getText(),Estado.getSelectedItem(),Fecha.getDate(), fa);
-
+                """.formatted(Observacion_text_big.getText(),Estado.getSelectedItem(),fechaFormateada, fa);
+               
+                System.out.println(fechaFormateada);
+                
                 int filasAfectadas = stat.executeUpdate(consulta);
                 
                 facturasee();
+                
                 JOptionPane.showMessageDialog(null, "La factura fue enviada exitosamente a la ruta.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             } 
             else {
