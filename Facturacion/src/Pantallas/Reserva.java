@@ -4,6 +4,9 @@
  */
 package Pantallas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author Gmurillo
@@ -19,6 +22,7 @@ public class Reserva extends javax.swing.JPanel {
     public Reserva() {
         initComponents();
         System.out.println("Entregar");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/Logo_Atlas.png")));
     }
 
     /**
@@ -474,4 +478,8 @@ public class Reserva extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    private void setIconImage(Image image) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

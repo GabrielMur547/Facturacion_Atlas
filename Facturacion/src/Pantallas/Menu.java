@@ -4,6 +4,8 @@
  */
 package Pantallas;
 
+import java.awt.Toolkit;
+
 
 /**
  *
@@ -21,6 +23,7 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/Logo_Atlas.png")));
     }
     
     /**

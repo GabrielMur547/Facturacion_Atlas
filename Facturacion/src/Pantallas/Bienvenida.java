@@ -4,6 +4,8 @@
  */
 package Pantallas;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author Gmurillo
@@ -16,6 +18,7 @@ public class Bienvenida extends javax.swing.JFrame {
      */
     public Bienvenida() {
         //initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/Logo_Atlas.png")));
     }
 
     /**
