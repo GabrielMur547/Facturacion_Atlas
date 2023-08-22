@@ -9,6 +9,7 @@ import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -225,17 +226,25 @@ public class Sesion extends javax.swing.JFrame {
                 if (rs.next()){
                     if("1".equals(rs.getString(5))){
                         String name = rs.getString(2);
-                        bienvenida.initComponents(name);
-                        bienvenida.setLocationRelativeTo(null);
-                        bienvenida.setResizable(false);
-                        bienvenida.setVisible(true);
+                        //bienvenida.initComponents(name);
+                        //bienvenida.setLocationRelativeTo(null);
+                        //bienvenida.setResizable(false);
+                        //bienvenida.setVisible(true);
                         this.setVisible(false);
+                        Menu menu = new Menu();
+                        menu.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Bienvenido(a): "+name, "WELCOME", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else if("1".equals(rs.getString(6))){
+                        String name = rs.getString(2);
                         Por_entregar = new Por_entregar();
                         Por_entregar.Pantallas("entregar");
                         this.setVisible(false);
                         Por_entregar.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Bienvenido(a): "+name, "WELCOME", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "El usuario que ha ingresado es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else{
