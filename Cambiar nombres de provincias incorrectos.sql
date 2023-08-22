@@ -1,11 +1,9 @@
-UPDATE facturas
-SET Seccion = 'CHIRIQUI'
-WHERE Seccion = 'CHIRIQU?';
+/*INSERT INTO ruta (InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha)
+SELECT InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha
+FROM facturas WHERE InvoiceNumber = "1039302";*/
 
-UPDATE facturas
-SET Seccion = 'PANAMA'
-WHERE Seccion = 'PANAM?';
+/*DELETE FROM ruta*/
 
-UPDATE facturas
-SET Seccion = 'COLON'
-WHERE Seccion = 'COL?N';
+/*CREATE USER 'gabrielmur'@'host' IDENTIFIED BY '';*/
+/*GRANT SELECT, INSERT, UPDATE, DELETE ON RFIDDB.* TO 'gabrielmur'@'host';*/
+FLUSH PRIVILEGES;

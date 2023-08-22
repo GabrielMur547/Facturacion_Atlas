@@ -66,7 +66,7 @@ public class Por_entregar extends javax.swing.JFrame {
         Fecha.setDate(null);
         
         DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
-                modelo.setRowCount(0);  
+        modelo.setRowCount(0);  
     try{
         Connection con = (Connection) ConexionMySQL.obtenerConexion();
         Statement stat = (Statement) con.createStatement();
@@ -488,40 +488,43 @@ public class Por_entregar extends javax.swing.JFrame {
         int lista = table_factura.getSelectedRow();
         String fa = table_factura.getValueAt(lista, 0).toString();
         
+        Date fecha = Fecha.getDate();
+        
         DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
         modelo.setRowCount(0);  
         try{
             Connection con = (Connection) ConexionMySQL.obtenerConexion();
             Statement stat = (Statement) con.createStatement();
 
-            String verificacion = "SELECT InvoiceNumber FROM ruta WHERE InvoiceNumber = '" + fa + "'";
+            String verificacion = "SELECT InvoiceNumber FROM ruta WHERE InvoiceNumber = '" + Factura.getText() + "'";
             ResultSet resultadoVerificacion = (ResultSet) stat.executeQuery(verificacion);
 
             if (!resultadoVerificacion.next()) {
+                if(fecha == null){
+                    facturasee();
+                    JOptionPane.showMessageDialog(null, "El campo de la fecha no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else{     
+                    SimpleDateFormat formato = new SimpleDateFormat("d/M/yyyy");
+                    String fechaFormateada = formato.format(fecha);
+                    System.out.println(fechaFormateada);
+                    
+                    consulta =  """
+                        INSERT INTO ruta (InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha)
+                        SELECT InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, '%s' AS Observacion, '%s' AS Estatus, DATE, Seccion, DueDate, '%s' AS Fecha
+                        FROM facturas WHERE InvoiceNumber LIKE '%%%s%%';
+                    """.formatted(Observacion_text_big.getText(),Estado.getSelectedItem(),fechaFormateada, Factura.getText());
 
-                Date fecha = Fecha.getDate();
-                
-                SimpleDateFormat formato = new SimpleDateFormat("d/M/yyyy");
-                String fechaFormateada = formato.format(fecha);
-                // No existe un registro con el mismo InvoiceNumber, realizar la inserción
-                consulta =  """
-                    INSERT INTO ruta (InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha)
-                    SELECT InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, '%s' AS Observacion, '%s' AS Estatus, DATE, Seccion, DueDate, '%s' AS Fecha
-                    FROM facturas WHERE InvoiceNumber LIKE '%%%s%%';
-                """.formatted(Observacion_text_big.getText(),Estado.getSelectedItem(),fechaFormateada, fa);
-               
-                System.out.println(fechaFormateada);
-                
-                int filasAfectadas = stat.executeUpdate(consulta);
-                
-                facturasee();
-                
-                JOptionPane.showMessageDialog(null, "La factura fue enviada exitosamente a la ruta.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    int filasAfectadas = stat.executeUpdate(consulta);
+
+                    facturasee();
+                    JOptionPane.showMessageDialog(null, "La factura fue enviada exitosamente a la ruta.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                }
+       
             } 
             else {
                 System.out.println("Esta factura ya fue enviada a la ruta.");
                 facturasee();
-                
                 JOptionPane.showMessageDialog(null, "Esta factura ya fue enviada a la ruta.", "Error", JOptionPane.ERROR_MESSAGE);
             }
            
