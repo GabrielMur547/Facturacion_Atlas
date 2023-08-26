@@ -144,7 +144,7 @@
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\gmurillo\Desktop\GitHub\Facturacion_Atlas\Facturacion\src\Imagenes\Logo_Atlas.png"/>
+              <Image iconType="3" name="/Pantallas/Logo_Atlas.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>

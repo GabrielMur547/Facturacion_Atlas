@@ -85,7 +85,7 @@ public class Sesion extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\gmurillo\\Desktop\\GitHub\\Facturacion_Atlas\\Facturacion\\src\\Imagenes\\Logo_Atlas.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/Logo_Atlas.png"))); // NOI18N
         jButton2.setBorder(null);
         jButton2.setContentAreaFilled(false);
 
