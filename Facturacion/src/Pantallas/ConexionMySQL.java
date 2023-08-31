@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class ConexionMySQL {
     
-    private static final String URL = "jdbc:mysql://192.10.10.219:3306/facturas_db";
+    private static final String URL = "jdbc:mysql://localhost:3306/facturas_db";
     private static final String USUARIO = "root";
     private static final String CONTRASENA = "";
     
