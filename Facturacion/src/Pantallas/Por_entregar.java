@@ -38,7 +38,6 @@ public class Por_entregar extends javax.swing.JFrame {
         System.out.println("Por Entregar");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setExtendedState(this.MAXIMIED_BOTH);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/Logo_Atlas.png")));
     }
     
