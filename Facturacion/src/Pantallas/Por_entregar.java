@@ -38,6 +38,7 @@ public class Por_entregar extends javax.swing.JFrame {
         System.out.println("Por Entregar");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setExtendedState(this.MAXIMIED_BOTH);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/Logo_Atlas.png")));
     }
     
@@ -171,8 +172,8 @@ public class Por_entregar extends javax.swing.JFrame {
             }
         });
         table_factura.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                table_facturaKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                table_facturaKeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(table_factura);
@@ -601,7 +602,7 @@ public class Por_entregar extends javax.swing.JFrame {
         facturasee();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void table_facturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_facturaKeyPressed
+    private void table_facturaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_facturaKeyReleased
         // TODO add your handling code here:
         int lista = table_factura.getSelectedRow();
         String fa = table_factura.getValueAt(lista, 0).toString();
@@ -655,7 +656,7 @@ public class Por_entregar extends javax.swing.JFrame {
         catch(ClassNotFoundException | SQLException ex){
             java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_table_facturaKeyPressed
+    }//GEN-LAST:event_table_facturaKeyReleased
 
     /**
      * @param args the command line arguments
