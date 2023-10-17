@@ -9,12 +9,27 @@ import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 import com.toedter.calendar.JCalendar;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -488,6 +503,111 @@ public class Por_entregar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static void crearExcel() {
+        Workbook book = new XSSFWorkbook();
+        org.apache.poi.ss.usermodel.Sheet sheet = book.createSheet("Hola Java");
+
+        Row row = sheet.createRow(0);
+        row.createCell(0).setCellValue("Hola Mundo");
+        row.createCell(1).setCellValue(7.5);
+        row.createCell(2).setCellValue(true);
+
+        Cell celda = row.createCell(3);
+        celda.setCellFormula(String.format("1+3", ""));
+
+        Row rowuno = sheet.createRow(1);
+        rowuno.createCell(0).setCellValue(7);
+        rowuno.createCell(1).setCellValue(8);
+
+        Cell celdauno = rowuno.createCell(2);
+        celdauno.setCellFormula(String.format("A%d+B%d", 2, 2));
+
+        try {
+            FileOutputStream fileout = new FileOutputStream("Excel.xlsX");
+            book.write(fileout);
+            fileout.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static void leerExcel() {
+        try {
+            FileInputStream file = new FileInputStream(new File("Excel.xlsx"));
+
+            XSSFWorkbook wb = new XSSFWorkbook(file);
+            XSSFSheet sheet = wb.getSheetAt(0);
+
+            int numFilas = sheet.getLastRowNum();
+
+            for (int a = 0; a <= numFilas; a++) {
+                Row fila = sheet.getRow(a);
+                int numCols = fila.getLastCellNum();
+
+                for (int b = 0; b < numCols; b++) {
+                    Cell celda = fila.getCell(b);
+
+                    switch (celda.getCellTypeEnum().toString()) {
+                        case "NUMERIC":
+                            System.out.print(celda.getNumericCellValue() + " ");
+                            break;
+
+                        case "STRING":
+                            System.out.print(celda.getStringCellValue() + " ");
+                            break;
+
+                        case "FORMULA":
+                            System.out.print(celda.getCellFormula() + " ");
+                            break;
+                    }
+                }
+                System.out.println("");
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void modificarExcel() {
+        try {
+            FileInputStream file = new FileInputStream(new File("Excel.xlsx"));
+
+            XSSFWorkbook wb = new XSSFWorkbook(file);
+            XSSFSheet sheet = wb.getSheetAt(0);
+
+            String password = "12345";
+
+            sheet.protectSheet(password);
+
+            XSSFRow fila = sheet.getRow(0);
+
+            if (fila == null) {
+                fila = sheet.createRow(0);
+            }
+
+            XSSFCell celda = fila.createCell(0);
+
+            if (celda == null) {
+                celda = fila.createCell(0);
+            }
+
+            celda.setCellValue("Modificacionnumero2");
+
+            file.close();
+
+            FileOutputStream output = new FileOutputStream("Excel1.xlsx");
+            wb.write(output);
+            output.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
         // TODO add your handling code here:
         if("admin".equals(this.pantalla)){
