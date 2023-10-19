@@ -46,6 +46,15 @@ public class Por_entregar extends javax.swing.JFrame {
     
     String pantalla;
     String factura;
+    
+    //Variable que contiene la fecha actual
+    LocalDate FechaActual = LocalDate.now();
+    DateTimeFormatter formatoPersonalizadoExcel = DateTimeFormatter.ofPattern("d-M-yyyy");
+    String Fecha_Actual_Excel = FechaActual.format(formatoPersonalizadoExcel);
+        
+    DateTimeFormatter formatoPersonalizado = DateTimeFormatter.ofPattern("d/M/yyyy");
+    String Fecha_Actual_Formateada = FechaActual.format(formatoPersonalizado);
+    
     /**
      * Creates new form tet
      */
@@ -505,11 +514,11 @@ public class Por_entregar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    String factura_excel = "Prueba error";
-    public void crearExcel(String factura_excel) {
-        this.factura_excel = factura_excel;
+    String fecha_excel = "";
+    public void crearExcel(String fecha_excel) {
+        this.fecha_excel = fecha_excel;
         Workbook book = new XSSFWorkbook();
-        org.apache.poi.ss.usermodel.Sheet sheet = book.createSheet("Libro del %"+ factura_excel);
+        org.apache.poi.ss.usermodel.Sheet sheet = book.createSheet("Hello"+ fecha_excel);
 
         Row row = sheet.createRow(0);
         row.createCell(0).setCellValue("Hola Mundo");
@@ -527,7 +536,7 @@ public class Por_entregar extends javax.swing.JFrame {
         celdauno.setCellFormula(String.format("A%d+B%d", 2, 2));
 
         try {
-            FileOutputStream fileout = new FileOutputStream("Excel.xlsX");
+            FileOutputStream fileout = new FileOutputStream(fecha_excel+".xlsX");
             book.write(fileout);
             fileout.close();
         } catch (FileNotFoundException ex) {
@@ -535,12 +544,11 @@ public class Por_entregar extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void leerExcel() {
         try {
-            FileInputStream file = new FileInputStream(new File("Excel.xlsx"));
+            FileInputStream file = new FileInputStream(new File(Fecha_Actual_Excel+".xlsx"));
 
             XSSFWorkbook wb = new XSSFWorkbook(file);
             XSSFSheet sheet = wb.getSheetAt(0);
@@ -577,9 +585,10 @@ public class Por_entregar extends javax.swing.JFrame {
         }
     }
 
-    public void modificarExcel() {
+    public void modificarExcel(String fecha_excel) {
+        this.fecha_excel = fecha_excel;
         try {
-            FileInputStream file = new FileInputStream(new File("Excel.xlsx"));
+            FileInputStream file = new FileInputStream(new File(fecha_excel+".xlsX"));
 
             XSSFWorkbook wb = new XSSFWorkbook(file);
             XSSFSheet sheet = wb.getSheetAt(0);
@@ -604,7 +613,7 @@ public class Por_entregar extends javax.swing.JFrame {
 
             file.close();
 
-            FileOutputStream output = new FileOutputStream("Excel1.xlsx");
+            FileOutputStream output = new FileOutputStream("Excel1.xlsX");
             wb.write(output);
             output.close();
         } catch (IOException ex) {
@@ -633,22 +642,16 @@ public class Por_entregar extends javax.swing.JFrame {
         
         Date fecha = Fecha.getDate();
         
-        //Variable que contiene la fecha actual
-        LocalDate FechaActual = LocalDate.now();
-        DateTimeFormatter formatoPersonalizado = DateTimeFormatter.ofPattern("d/M/yyyy");
-        String Fecha_Actual_Formateada = FechaActual.format(formatoPersonalizado);
-        
         DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
         modelo.setRowCount(0);  
         try{
             Connection con = (Connection) ConexionMySQL.obtenerConexion();
             Statement stat = (Statement) con.createStatement();
-
-            System.out.println(Fecha_Actual_Formateada);
+            
             String verificacion = "SELECT InvoiceNumber FROM ruta WHERE InvoiceNumber = '" + Factura.getText() + "'";
             ResultSet resultadoVerificacion = (ResultSet) stat.executeQuery(verificacion);
             
-            String factura_excel = Factura.getText();
+            //String factura_excel = Factura.getText();
 
             if (!resultadoVerificacion.next()) {
                 if(fecha == null){
@@ -668,28 +671,68 @@ public class Por_entregar extends javax.swing.JFrame {
                     """.formatted(Observacion_text_big.getText(),Estado.getSelectedItem(),fechaFormateada, Factura.getText());
 
                     int filasAfectadas = stat.executeUpdate(consulta);
-
-                    facturasee();
-                    JOptionPane.showMessageDialog(null, "La factura fue enviada exitosamente a la ruta.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     
                     consulta_movi = "Select * FROM movimientos WHERE fecha = '"+Fecha_Actual_Formateada+"'";
-                    System.out.println(Fecha_Actual_Formateada);
                     ResultSet fe = (ResultSet) stat.executeQuery(consulta_movi);
+                    
+                    System.out.println("Fecha formateada: "+Fecha_Actual_Formateada);
+                    System.out.println("Fecha formateada Excel: "+Fecha_Actual_Excel);
+                    
+                    String ExcelFileName = Fecha_Actual_Excel+".xlsx";
+                    File ExcelFile = new File(ExcelFileName);
+                    
+                    boolean validacion_movimientos = fe.next();
+                    boolean validacion_excel = ExcelFile.exists();
+                    
+                    System.out.println("Confirmacion movimientos: "+validacion_movimientos);
+                    System.out.println("Confirmacion Excel: "+validacion_excel);
+                    
+                    if(validacion_movimientos && validacion_excel){
+                        System.out.println("Ambos existen");
+                        consulta_movi =  """
+                                UPDATE movimientos
+                                SET cantidad = cantidad + 1
+                                WHERE fecha = '%s'
+                            """.formatted(Fecha_Actual_Formateada);
 
-                    if(fe.next()){
-                        System.out.println("Ya existe");
+                        int filas_movimientos = stat.executeUpdate(consulta_movi);
+                        modificarExcel(Fecha_Actual_Excel);
+                    }
+                    else if(!validacion_excel && validacion_movimientos){
+                        System.out.println("Excel no existe");
+                        consulta_movi =  """
+                                UPDATE movimientos
+                                SET cantidad = cantidad + 1
+                                WHERE fecha = '%s'
+                            """.formatted(Fecha_Actual_Formateada);
+
+                        int filas_movimientos = stat.executeUpdate(consulta_movi);
+                        crearExcel(Fecha_Actual_Excel);
+                    }    
+                    else if (
+                            !validacion_movimientos && validacion_excel){
+                        System.out.println("Movimiento no existe");
+                        consulta_movi =  """
+                              INSERT INTO movimientos (fecha, cantidad)
+                              SELECT '%s' AS fecha, '%s' AS cantidad;
+                          """.formatted(Fecha_Actual_Formateada, 1);
+                        int filas_movimientos = stat.executeUpdate(consulta_movi);
+                        modificarExcel(Fecha_Actual_Excel);
                     }
                     else{
+                        System.out.println("Ninguno existe");
                         consulta_movi =  """
                               INSERT INTO movimientos (fecha, cantidad)
                               SELECT '%s' AS fecha, '%s' AS cantidad;
                           """.formatted(Fecha_Actual_Formateada, 1);
 
                               int filas_movimientos = stat.executeUpdate(consulta_movi);
-                        
-                        crearExcel(factura_excel);
+                        crearExcel(Fecha_Actual_Excel);
                         System.out.println("Guardado");
-                    }    
+                    }
+                    
+                    facturasee();
+                    JOptionPane.showMessageDialog(null, "La factura fue enviada exitosamente a la ruta.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 }
             } 
             else {
