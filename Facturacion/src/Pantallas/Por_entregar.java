@@ -80,6 +80,7 @@ public class Por_entregar extends javax.swing.JFrame {
     String factu;
     String consulta_movi;
     String consulta_Excel;
+    String consulta_insertar;
     
     public void facturasee(){
         Factura.setText(null);
@@ -518,6 +519,7 @@ public class Por_entregar extends javax.swing.JFrame {
     String fecha_excel = "";
     String fecha_excel_formateada = "";
     int cantidad;
+    
     public void crearExcel(String fecha_excel, String fecha_excel_formateada) throws FileNotFoundException, IOException {
         this.fecha_excel = fecha_excel;
         this.Fecha_Actual_Formateada = fecha_excel_formateada;
@@ -532,7 +534,36 @@ public class Por_entregar extends javax.swing.JFrame {
         if(!validacion_excel){
             book = new XSSFWorkbook();
             org.apache.poi.ss.usermodel.Sheet sheet = book.createSheet("Movimientos");
+            
+            String password = "12345";
+            sheet.setColumnWidth(0, 4000);
+            sheet.setColumnWidth(1, 4000); 
+            sheet.setColumnWidth(2, 8000);  
+            sheet.setColumnWidth(3, 10000);  
+            sheet.setColumnWidth(4, 4000);  
+            sheet.setColumnWidth(5, 4000);  
+            sheet.setColumnWidth(6, 10000);  
+            sheet.setColumnWidth(7, 5000);  
+            sheet.setColumnWidth(8, 4000);  
+            sheet.setColumnWidth(9, 5000);  
+            sheet.setColumnWidth(10, 4000);
+            sheet.setColumnWidth(11, 4000);
+           
+            Row rowuno = sheet.createRow(0);
+            rowuno.createCell(0).setCellValue("InvoiceNumber");
+            rowuno.createCell(1).setCellValue("DeptorNumber");
+            rowuno.createCell(2).setCellValue("cmp_name");
+            rowuno.createCell(3).setCellValue("Descripcion");
+            rowuno.createCell(4).setCellValue("AmountTC");
+            rowuno.createCell(5).setCellValue("Transaccion");
+            rowuno.createCell(6).setCellValue("Observacion");
+            rowuno.createCell(7).setCellValue("Estatus");
+            rowuno.createCell(8).setCellValue("Date");
+            rowuno.createCell(9).setCellValue("Seccion");
+            rowuno.createCell(10).setCellValue("DueDate");
+            rowuno.createCell(11).setCellValue("Fechas");
         }
+        
         else{
             FileInputStream fileInput = new FileInputStream(ExcelFile);       
             book = new XSSFWorkbook(fileInput);
@@ -561,14 +592,30 @@ public class Por_entregar extends javax.swing.JFrame {
         }
             catch(ClassNotFoundException | SQLException ex){
                 java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-         
-        Row row = sheet.createRow(cantidad-1);
-        row.createCell(0).setCellValue("1");
-        row.createCell(1).setCellValue("2");
-        row.createCell(2).setCellValue("3");
+        }         
         
-        row.createCell(3).setCellFormula("1+3");
+        try{
+            Connection con = (Connection) ConexionMySQL.obtenerConexion();
+            Statement stat = (Statement) con.createStatement();
+                    
+            consulta_insertar= "Select * FROM facturas WHERE InvoiceNumber LIKE '%" + Factura.getText() + "%'";
+
+            ResultSet ci = (ResultSet) stat.executeQuery(consulta_insertar);
+
+            ci.first();
+
+            do{ 
+                Row row = sheet.createRow(cantidad);
+                for(int i=0; i<12; i++){
+                    row.createCell(i).setCellValue(ci.getString(i+1));
+                    //row.createCell(3).setCellFormula("1+3");
+                }
+            }
+            while(ci.next());
+        }
+            catch(ClassNotFoundException | SQLException ex){
+                java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         
         try {
             FileOutputStream fileout = new FileOutputStream(ExcelFileName);
@@ -778,22 +825,14 @@ public class Por_entregar extends javax.swing.JFrame {
                     consulta_movi = "Select * FROM movimientos WHERE fecha = '"+Fecha_Actual_Formateada+"'";
                     ResultSet fe = (ResultSet) stat.executeQuery(consulta_movi);
                     
-                    //System.out.println("Fecha formateada: "+Fecha_Actual_Formateada);
-                    //System.out.println("Fecha formateada Excel: "+Fecha_Actual_Excel);
-                    
-                    //Validacion de la existencia de un archivo Excel que tenga de nombre la fecha actual
-                    String ExcelFileName = Fecha_Actual_Excel+".xlsx";
-                    File ExcelFile = new File(ExcelFileName);
-                    
-                    //2 variables de tipo booleano que guarde el estado de ambas validaciones
+                    //variable de tipo booleano que guarde el estado de la validacion
                     boolean validacion_movimientos = fe.next();
-                    boolean validacion_excel = ExcelFile.exists();
                     
                     //System.out.println("Confirmacion movimientos: "+validacion_movimientos);
                     //System.out.println("Confirmacion Excel: "+validacion_excel);
                     
                     //Accion en caso de que si exista un elemento en la tabla "movimientos" con la fecha actual y tambien que exista un excel con la fecha actual
-                    if(validacion_movimientos && validacion_excel){
+                    if(validacion_movimientos){
                         System.out.println("Ambos existen");
                         consulta_movi =  """
                                 UPDATE movimientos
@@ -804,29 +843,6 @@ public class Por_entregar extends javax.swing.JFrame {
                         int filas_movimientos = stat.executeUpdate(consulta_movi);
                         crearExcel(Fecha_Actual_Excel, Fecha_Actual_Formateada);
                         //modificarExcel(Fecha_Actual_Excel,Fecha_Actual_Formateada);
-                    }
-                    //Accion en caso de que no exista un excel con la fecha actual pero si exista un elemento en la tabla "movimientos" con la fecha actual
-                    else if(!validacion_excel && validacion_movimientos){
-                        System.out.println("Excel no existe");
-                        consulta_movi =  """
-                                UPDATE movimientos
-                                SET cantidad = cantidad + 1
-                                WHERE fecha = '%s'
-                            """.formatted(Fecha_Actual_Formateada);
-
-                        int filas_movimientos = stat.executeUpdate(consulta_movi);
-                        crearExcel(Fecha_Actual_Excel, Fecha_Actual_Formateada);
-                    } 
-                    //Accion en caso de que no exista un elemento en la tabla "movimientos" con la fecha actual pero si exista un excel con la fecha actual
-                    else if (!validacion_movimientos && validacion_excel){
-                        System.out.println("Movimiento no existe");
-                        consulta_movi =  """
-                              INSERT INTO movimientos (fecha, cantidad)
-                              SELECT '%s' AS fecha, '%s' AS cantidad;
-                          """.formatted(Fecha_Actual_Formateada, 1);
-                        int filas_movimientos = stat.executeUpdate(consulta_movi);
-                        crearExcel(Fecha_Actual_Excel, Fecha_Actual_Formateada);
-                        //modificarExcel(Fecha_Actual_Excel, Fecha_Actual_Formateada);
                     }
                     //Accion en caso de que no exista ni un elemento en la tabla "movimientos" ni el excel con la fecha actual
                     else{
