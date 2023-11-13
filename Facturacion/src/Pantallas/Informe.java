@@ -37,7 +37,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author Gmurillo
  */
-public class Por_entregar extends javax.swing.JFrame {
+public class Informe extends javax.swing.JFrame {
     
     private String buscar = "";
 
@@ -56,9 +56,9 @@ public class Por_entregar extends javax.swing.JFrame {
     String Fecha_Actual_Formateada = FechaActual.format(formatoPersonalizado);
     
     /**
-     * Creates new form tet
+     * Creates new form tet--
      */
-    public Por_entregar() {
+    public Informe() {
         initComponents();
         facturasee();
         System.out.println("Por Entregar");
@@ -83,13 +83,13 @@ public class Por_entregar extends javax.swing.JFrame {
     String consulta_insertar;
     
     public void facturasee(){
-        Factura.setText(null);
+        //Factura.setText(null);
         Cuenta.setText(null);
         Nombre.setText(null);
-        Fiscal.setText(null);
-        Monto.setText(null);
+        //Fiscal.setText(null);
+        //Monto.setText(null);
         Transaccion.setText(null);
-        Observacion_text_big.setText( null);
+        //Observacion_text_big.setText( null);
         Estado.setSelectedItem(null);
         Fecha.setDate(null);
         
@@ -116,7 +116,7 @@ public class Por_entregar extends javax.swing.JFrame {
         }while(rs.next());
     }
     catch(ClassNotFoundException | SQLException ex){
-        java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
 }
 
@@ -135,33 +135,26 @@ public class Por_entregar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Regresar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        Factura_text = new javax.swing.JLabel();
-        Factura = new javax.swing.JTextField();
         Cuenta_text = new javax.swing.JLabel();
         Cuenta = new javax.swing.JTextField();
         Nombre_text = new javax.swing.JLabel();
         Nombre = new javax.swing.JTextField();
-        Monto_text = new javax.swing.JLabel();
-        Monto = new javax.swing.JTextField();
-        Fiscal_text = new javax.swing.JLabel();
-        Fiscal = new javax.swing.JTextField();
         Transaccion_text = new javax.swing.JLabel();
         Transaccion = new javax.swing.JTextField();
         Estado_text = new javax.swing.JLabel();
         Estado = new javax.swing.JComboBox<>();
-        Fecha_text = new javax.swing.JLabel();
-        Fecha = new com.toedter.calendar.JDateChooser();
-        Observacion_text = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Observacion_text_big = new javax.swing.JTextArea();
-        Enviar_button = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_factura = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         Buscar_text = new javax.swing.JLabel();
         Buscar = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table_factura = new javax.swing.JTable();
+        Enviar_button = new javax.swing.JButton();
+        Fecha = new com.toedter.calendar.JDateChooser();
+        Fecha_text = new javax.swing.JLabel();
+        Fecha_text1 = new javax.swing.JLabel();
+        Fecha1 = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -179,7 +172,7 @@ public class Por_entregar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(253, 215, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("FACTURAS POR ENTREGAR");
+        jLabel1.setText("INFORME");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Regresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -197,11 +190,11 @@ public class Por_entregar extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
-                .addGap(202, 202, 202)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(Regresar)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,18 +212,16 @@ public class Por_entregar extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(244, 244, 244));
 
-        Factura_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Factura_text.setText("Factura");
-
-        Factura.setEditable(false);
-        Factura.setEnabled(false);
-        Factura.setFocusable(false);
-
         Cuenta_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Cuenta_text.setText("Cuenta");
 
         Cuenta.setBackground(new java.awt.Color(242, 242, 242));
         Cuenta.setEnabled(false);
+        Cuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CuentaActionPerformed(evt);
+            }
+        });
 
         Nombre_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Nombre_text.setText("Nombre");
@@ -238,17 +229,6 @@ public class Por_entregar extends javax.swing.JFrame {
         Nombre.setBackground(new java.awt.Color(242, 242, 242));
         Nombre.setAutoscrolls(false);
         Nombre.setEnabled(false);
-
-        Monto_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Monto_text.setText("Monto");
-
-        Monto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        Monto.setEnabled(false);
-
-        Fiscal_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Fiscal_text.setText("Fiscal");
-
-        Fiscal.setEnabled(false);
 
         Transaccion_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Transaccion_text.setText("Transacción");
@@ -261,155 +241,6 @@ public class Por_entregar extends javax.swing.JFrame {
         Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por entregar", "En ruta", "Entregado", "Multa", "Sin información", "No encontrado" }));
         Estado.setEnabled(false);
         Estado.setFocusable(false);
-
-        Fecha_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Fecha_text.setText("Fecha presentación");
-
-        Fecha.setToolTipText("22/10/2023");
-        Fecha.setDateFormatString("d/M/yyyy");
-
-        Observacion_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Observacion_text.setText("Observación");
-
-        Observacion_text_big.setColumns(20);
-        Observacion_text_big.setLineWrap(true);
-        Observacion_text_big.setRows(5);
-        jScrollPane2.setViewportView(Observacion_text_big);
-
-        Enviar_button.setText("Envíar a Ruta");
-        Enviar_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Enviar_buttonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Factura_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Monto_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Factura, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Transaccion_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Cuenta_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Transaccion, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(Cuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Nombre_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Estado_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Estado, 0, 200, Short.MAX_VALUE)
-                            .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(Fecha_text)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(Fiscal_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Fiscal, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(Observacion_text)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Factura_text)
-                    .addComponent(Factura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cuenta_text)
-                    .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nombre_text)
-                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Fiscal_text)
-                    .addComponent(Fiscal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Monto_text)
-                        .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Transaccion_text)
-                        .addComponent(Transaccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Estado_text)
-                        .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Fecha_text))
-                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Observacion_text)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel6.setBackground(new java.awt.Color(244, 244, 244));
-
-        Buscar_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Buscar_text.setText("Buscar");
-
-        Buscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                BuscarKeyReleased(evt);
-            }
-        });
-
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setText("Actualizar lista");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Buscar_text)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Buscar_text))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.setBackground(new java.awt.Color(244, 244, 244));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         table_factura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -449,6 +280,155 @@ public class Por_entregar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table_factura);
 
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(Transaccion_text)
+                        .addGap(6, 6, 6)
+                        .addComponent(Transaccion, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(Nombre_text)
+                        .addGap(27, 27, 27)
+                        .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Estado_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Cuenta_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Cuenta_text)
+                            .addComponent(Nombre_text)
+                            .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Transaccion_text)
+                            .addComponent(Transaccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Estado_text)
+                            .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+
+        jPanel6.setBackground(new java.awt.Color(244, 244, 244));
+
+        Buscar_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Buscar_text.setText("Buscar");
+
+        Buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                BuscarKeyReleased(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton5.setText("Actualizar lista");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Buscar_text)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(jButton5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Buscar_text))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.setBackground(new java.awt.Color(244, 244, 244));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        Enviar_button.setText("Descargar informe");
+        Enviar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Enviar_buttonActionPerformed(evt);
+            }
+        });
+
+        Fecha.setToolTipText("22/10/2023");
+        Fecha.setDateFormatString("d/M/yyyy");
+
+        Fecha_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Fecha_text.setText("Desde");
+
+        Fecha_text1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Fecha_text1.setText("Hasta");
+
+        Fecha1.setToolTipText("22/10/2023");
+        Fecha1.setDateFormatString("d/M/yyyy");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Fecha_text)
+                .addGap(18, 18, 18)
+                .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102)
+                .addComponent(Fecha_text1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(249, 249, 249))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Fecha_text)
+                        .addComponent(Fecha_text1))
+                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+
         jPanel4.setBackground(new java.awt.Color(0, 40, 87));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -462,33 +442,15 @@ public class Por_entregar extends javax.swing.JFrame {
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1148, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,20 +459,24 @@ public class Por_entregar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1160, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 948, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -535,7 +501,6 @@ public class Por_entregar extends javax.swing.JFrame {
             book = new XSSFWorkbook();
             org.apache.poi.ss.usermodel.Sheet sheet = book.createSheet("Movimientos");
             
-            String password = "12345";
             sheet.setColumnWidth(0, 4000);
             sheet.setColumnWidth(1, 4000); 
             sheet.setColumnWidth(2, 8000);  
@@ -548,7 +513,6 @@ public class Por_entregar extends javax.swing.JFrame {
             sheet.setColumnWidth(9, 5000);  
             sheet.setColumnWidth(10, 4000);
             sheet.setColumnWidth(11, 4000);
-            sheet.setColumnWidth(12, 4000);
            
             Row rowuno = sheet.createRow(0);
             rowuno.createCell(0).setCellValue("InvoiceNumber");
@@ -563,7 +527,6 @@ public class Por_entregar extends javax.swing.JFrame {
             rowuno.createCell(9).setCellValue("Seccion");
             rowuno.createCell(10).setCellValue("DueDate");
             rowuno.createCell(11).setCellValue("Fechas");
-            rowuno.createCell(12).setCellValue("Fechas");
         }
         
         else{
@@ -588,19 +551,19 @@ public class Por_entregar extends javax.swing.JFrame {
 
             do{ 
                 cantidad = ce.getInt(3);
-                System.out.print(cantidad);
+                System.out.println(cantidad);
             }
             while(ce.next());
         }
             catch(ClassNotFoundException | SQLException ex){
-                java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }         
         
         try{
             Connection con = (Connection) ConexionMySQL.obtenerConexion();
             Statement stat = (Statement) con.createStatement();
                     
-            consulta_insertar= "Select * FROM ruta WHERE InvoiceNumber LIKE '%" + Factura.getText() + "%'";
+            //consulta_insertar= "Select * FROM ruta WHERE InvoiceNumber LIKE '%" + Factura.getText() + "%'";
 
             ResultSet ci = (ResultSet) stat.executeQuery(consulta_insertar);
 
@@ -608,7 +571,7 @@ public class Por_entregar extends javax.swing.JFrame {
 
             do{ 
                 Row row = sheet.createRow(cantidad);
-                for(int i=0; i<13; i++){
+                for(int i=0; i<12; i++){
                     row.createCell(i).setCellValue(ci.getString(i+1));
                     //row.createCell(3).setCellFormula("1+3");
                 }
@@ -616,7 +579,7 @@ public class Por_entregar extends javax.swing.JFrame {
             while(ci.next());
         }
             catch(ClassNotFoundException | SQLException ex){
-                java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
         try {
@@ -721,9 +684,9 @@ public class Por_entregar extends javax.swing.JFrame {
                 System.out.println("");
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Informe.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Informe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -760,7 +723,7 @@ public class Por_entregar extends javax.swing.JFrame {
             wb.write(output);
             output.close();
         } catch (IOException ex) {
-            Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Informe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -794,35 +757,9 @@ public class Por_entregar extends javax.swing.JFrame {
             //Conexión a la base de datos
             Connection con = (Connection) ConexionMySQL.obtenerConexion();
             Statement stat = (Statement) con.createStatement();
-            
-            //Otorgamos a la variable "verificacion" la consulta que se hará a la base de datos
-            String verificacion = "SELECT InvoiceNumber FROM ruta WHERE InvoiceNumber = '" + Factura.getText() + "'";
-            ResultSet resultadoVerificacion = (ResultSet) stat.executeQuery(verificacion);
-            
-            //String factura_excel = Factura.getText();
-            
-            //Validacion en caso de que resultadoVerificacion sea falso
-            if (!resultadoVerificacion.next()) {
-                //Validacion en caso de que el usuario no ingrese una fecha
-                if(fecha == null){
-                    facturasee();
-                    JOptionPane.showMessageDialog(null, "El campo de la fecha no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                else{  
-                    //Se cambia el formato de la fecha para guardarla
-                    SimpleDateFormat formato = new SimpleDateFormat("d/M/yyyy");
-                    String fechaFormateada = formato.format(fecha);
-                    
-                    //Se hace la consulta para insertar todos los datos de la factura seleccionada para enviarla a la tabla de ruta
-                    consulta =  """
-                        INSERT INTO ruta (InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, Observacion, Estatus, DATE, Seccion, DueDate, Fecha, Movimiento)
-                        SELECT InvoiceNumber, DeptorNumber, cmp_name, Descripcion, AmountTC, Transaccion, '%s' AS Observacion, '%s' AS Estatus, DATE, Seccion, DueDate, '%s' AS Fecha, 'Ruta' AS Movimiento
-                        FROM facturas WHERE InvoiceNumber LIKE '%%%s%%';
-                    """.formatted(Observacion_text_big.getText(),Estado.getSelectedItem(),fechaFormateada, Factura.getText());
 
-                    //Se hace el update de la tabla
-                    int filasAfectadas = stat.executeUpdate(consulta);
-                    
+                //Validacion en caso de que el usuario no ingrese una fecha
+              
                     //Consulta para validar si existe algun elemento que contenga la fecha actual
                     consulta_movi = "Select * FROM movimientos WHERE fecha = '"+Fecha_Actual_Formateada+"'";
                     ResultSet fe = (ResultSet) stat.executeQuery(consulta_movi);
@@ -841,10 +778,9 @@ public class Por_entregar extends javax.swing.JFrame {
                                 SET cantidad = cantidad + 1
                                 WHERE fecha = '%s'
                             """.formatted(Fecha_Actual_Formateada);
-
+                        
                         int filas_movimientos = stat.executeUpdate(consulta_movi);
                         crearExcel(Fecha_Actual_Excel, Fecha_Actual_Formateada);
-                        //modificarExcel(Fecha_Actual_Excel,Fecha_Actual_Formateada);
                     }
                     //Accion en caso de que no exista ni un elemento en la tabla "movimientos" ni el excel con la fecha actual
                     else{
@@ -853,7 +789,7 @@ public class Por_entregar extends javax.swing.JFrame {
                               INSERT INTO movimientos (fecha, cantidad)
                               SELECT '%s' AS fecha, '%s' AS cantidad;
                           """.formatted(Fecha_Actual_Formateada, 1);
-
+                        
                               int filas_movimientos = stat.executeUpdate(consulta_movi);
                         crearExcel(Fecha_Actual_Excel, Fecha_Actual_Formateada);
                         System.out.println("Guardado");
@@ -861,19 +797,10 @@ public class Por_entregar extends javax.swing.JFrame {
                     //Vuelve a vaciar los elementos en la pantalla
                     facturasee();
                     JOptionPane.showMessageDialog(null, "La factura fue enviada exitosamente a la ruta.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } 
-            else {
-                System.out.println("Esta factura ya fue enviada a la ruta.");
-                facturasee();
-                JOptionPane.showMessageDialog(null, "Esta factura ya fue enviada a la ruta.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-           
-        }
-        catch(ClassNotFoundException | SQLException ex){
-            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
+                }     
+        
+        catch(ClassNotFoundException | SQLException | IOException ex){
+            java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_Enviar_buttonActionPerformed
 
@@ -903,20 +830,20 @@ public class Por_entregar extends javax.swing.JFrame {
 
             rs.first();
 
-            Factura.setText(rs.getString(1));
-            Factura.setCaretPosition(0);
+            //Factura.setText(rs.getString(1));
+            //Factura.setCaretPosition(0);
             Cuenta.setText(rs.getString(2));
             Cuenta.setCaretPosition(0);
             Nombre.setText(rs.getString(3));
             Nombre.setCaretPosition(0);
-            Fiscal.setText(rs.getString(4));
-            Fiscal.setCaretPosition(0);
-            Monto.setText(rs.getString(5));
-            Monto.setCaretPosition(0);
+            //Fiscal.setText(rs.getString(4));
+            //Fiscal.setCaretPosition(0);
+            //Monto.setText(rs.getString(5));
+            //Monto.setCaretPosition(0);
             Transaccion.setText(rs.getString(6));
             Transaccion.setCaretPosition(0);
-            Observacion_text_big.setText(rs.getString(7));
-            Observacion_text_big.setCaretPosition(0);
+            //Observacion_text_big.setText(rs.getString(7));
+            //Observacion_text_big.setCaretPosition(0);
             if ("Por entregar".equals(rs.getString(8))){
                 Estado.setSelectedIndex(0);
             }
@@ -940,7 +867,7 @@ public class Por_entregar extends javax.swing.JFrame {
             //Fecha.setCaretPosition(0);
         }
         catch(ClassNotFoundException | SQLException ex){
-            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_table_facturaKeyReleased
 
@@ -959,20 +886,20 @@ public class Por_entregar extends javax.swing.JFrame {
 
             rs.first();
 
-            Factura.setText(rs.getString(1));
-            Factura.setCaretPosition(0);
+            //Factura.setText(rs.getString(1));
+            //Factura.setCaretPosition(0);
             Cuenta.setText(rs.getString(2));
             Cuenta.setCaretPosition(0);
             Nombre.setText(rs.getString(3));
             Nombre.setCaretPosition(0);
-            Fiscal.setText(rs.getString(4));
-            Fiscal.setCaretPosition(0);
-            Monto.setText(rs.getString(5));
-            Monto.setCaretPosition(0);
+            //Fiscal.setText(rs.getString(4));
+            //Fiscal.setCaretPosition(0);
+            //Monto.setText(rs.getString(5));
+            //Monto.setCaretPosition(0);
             Transaccion.setText(rs.getString(6));
             Transaccion.setCaretPosition(0);
-            Observacion_text_big.setText(rs.getString(7));
-            Observacion_text_big.setCaretPosition(0);
+            //Observacion_text_big.setText(rs.getString(7));
+            //Observacion_text_big.setCaretPosition(0);
             if ("Por entregar".equals(rs.getString(8))){
                 Estado.setSelectedIndex(0);
             }
@@ -996,9 +923,13 @@ public class Por_entregar extends javax.swing.JFrame {
             //Fecha.setCaretPosition(0);
         }
         catch(ClassNotFoundException | SQLException ex){
-            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_table_facturaMousePressed
+
+    private void CuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CuentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1017,21 +948,23 @@ public class Por_entregar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Por_entregar().setVisible(true);
+                new Informe().setVisible(true);
             }
         });
     }
@@ -1044,18 +977,12 @@ public class Por_entregar extends javax.swing.JFrame {
     private javax.swing.JButton Enviar_button;
     private javax.swing.JComboBox<String> Estado;
     private javax.swing.JLabel Estado_text;
-    private javax.swing.JTextField Factura;
-    private javax.swing.JLabel Factura_text;
     private com.toedter.calendar.JDateChooser Fecha;
+    private com.toedter.calendar.JDateChooser Fecha1;
     private javax.swing.JLabel Fecha_text;
-    private javax.swing.JTextField Fiscal;
-    private javax.swing.JLabel Fiscal_text;
-    private javax.swing.JTextField Monto;
-    private javax.swing.JLabel Monto_text;
+    private javax.swing.JLabel Fecha_text1;
     private javax.swing.JTextField Nombre;
     private javax.swing.JLabel Nombre_text;
-    private javax.swing.JLabel Observacion_text;
-    private javax.swing.JTextArea Observacion_text_big;
     private javax.swing.JButton Regresar;
     private javax.swing.JTextField Transaccion;
     private javax.swing.JLabel Transaccion_text;
@@ -1069,7 +996,6 @@ public class Por_entregar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable table_factura;
     // End of variables declaration//GEN-END:variables
 }
