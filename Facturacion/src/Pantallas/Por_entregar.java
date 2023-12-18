@@ -563,7 +563,7 @@ public class Por_entregar extends javax.swing.JFrame {
             rowuno.createCell(9).setCellValue("Seccion");
             rowuno.createCell(10).setCellValue("DueDate");
             rowuno.createCell(11).setCellValue("Fechas");
-            rowuno.createCell(12).setCellValue("Fechas");
+            rowuno.createCell(12).setCellValue("Movimiento");
         }
         
         else{

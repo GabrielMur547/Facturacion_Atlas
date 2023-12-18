@@ -61,7 +61,6 @@ public class Informe extends javax.swing.JFrame {
     public Informe() {
         initComponents();
         facturasee();
-        System.out.println("Por Entregar");
         this.setLocationRelativeTo(null);
         //this.setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/Logo_Atlas.png")));
@@ -84,14 +83,15 @@ public class Informe extends javax.swing.JFrame {
     
     public void facturasee(){
         //Factura.setText(null);
-        Cuenta.setText(null);
-        Nombre.setText(null);
+        //Cuenta.setText(null);
+        //Nombre.setText(null);
         //Fiscal.setText(null);
         //Monto.setText(null);
-        Transaccion.setText(null);
+        //Transaccion.setText(null);
         //Observacion_text_big.setText( null);
+        Fecha_D.setDate(null);
+        Fecha_H.setDate(null);
         Estado.setSelectedItem(null);
-        Fecha.setDate(null);
         
         DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
         modelo.setRowCount(0);  
@@ -103,7 +103,7 @@ public class Informe extends javax.swing.JFrame {
             consulta = "Select * From facturas";
         }
         else if (!buscar.isEmpty()){
-            consulta = "Select * From facturas WHERE facturas.InvoiceNumber LIKE '%" + buscar + "%' OR facturas.DeptorNumber LIKE '%" + buscar + "%' OR facturas.cmp_name LIKE '%" + buscar + "%'";
+            consulta = "Select * From facturas WHERE facturas.DeptorNumber LIKE '%" + buscar + "%' OR facturas.cmp_name LIKE '%" + buscar + "%'";
         }
         
         ResultSet rs = (ResultSet) stat.executeQuery(consulta);
@@ -135,35 +135,28 @@ public class Informe extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Regresar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        Cuenta_text = new javax.swing.JLabel();
-        Cuenta = new javax.swing.JTextField();
-        Nombre_text = new javax.swing.JLabel();
-        Nombre = new javax.swing.JTextField();
-        Transaccion_text = new javax.swing.JLabel();
-        Transaccion = new javax.swing.JTextField();
         Estado_text = new javax.swing.JLabel();
         Estado = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_factura = new javax.swing.JTable();
+        Fecha_text = new javax.swing.JLabel();
+        Fecha_D = new com.toedter.calendar.JDateChooser();
+        Fecha_text1 = new javax.swing.JLabel();
+        Fecha_H = new com.toedter.calendar.JDateChooser();
+        jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         Buscar_text = new javax.swing.JLabel();
         Buscar = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        Enviar_button = new javax.swing.JButton();
-        Fecha = new com.toedter.calendar.JDateChooser();
-        Fecha_text = new javax.swing.JLabel();
-        Fecha_text1 = new javax.swing.JLabel();
-        Fecha1 = new com.toedter.calendar.JDateChooser();
-        jPanel4 = new javax.swing.JPanel();
+        Descargar_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1002, 464));
+        setMinimumSize(new java.awt.Dimension(600, 374));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1002, 464));
 
         jPanel3.setBackground(new java.awt.Color(0, 40, 87));
+        jPanel3.setPreferredSize(new java.awt.Dimension(600, 87));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/Logo_Atlas.png"))); // NOI18N
         jButton2.setBorder(null);
@@ -189,12 +182,12 @@ public class Informe extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(jButton2)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Regresar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,41 +199,22 @@ public class Informe extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel5.setBackground(new java.awt.Color(244, 244, 244));
-
-        Cuenta_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Cuenta_text.setText("Cuenta");
-
-        Cuenta.setBackground(new java.awt.Color(242, 242, 242));
-        Cuenta.setEnabled(false);
-        Cuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CuentaActionPerformed(evt);
-            }
-        });
-
-        Nombre_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Nombre_text.setText("Nombre");
-
-        Nombre.setBackground(new java.awt.Color(242, 242, 242));
-        Nombre.setAutoscrolls(false);
-        Nombre.setEnabled(false);
-
-        Transaccion_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Transaccion_text.setText("Transacción");
-
-        Transaccion.setEnabled(false);
+        jPanel5.setPreferredSize(new java.awt.Dimension(600, 223));
 
         Estado_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Estado_text.setText("Estado");
 
-        Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por entregar", "En ruta", "Entregado", "Multa", "Sin información", "No encontrado" }));
-        Estado.setEnabled(false);
-        Estado.setFocusable(false);
+        Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aplicar", "Multa", "Por Presentar", "Presentado", "Retencion", "Sin información", " " }));
+        Estado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EstadoActionPerformed(evt);
+            }
+        });
 
         table_factura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -280,6 +254,32 @@ public class Informe extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table_factura);
 
+        Fecha_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Fecha_text.setText("Desde");
+
+        Fecha_D.setToolTipText("22/10/2023");
+        Fecha_D.setDateFormatString("d/M/yyyy");
+
+        Fecha_text1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Fecha_text1.setText("Hasta");
+
+        Fecha_H.setToolTipText("22/10/2023");
+        Fecha_H.setDateFormatString("d/M/yyyy");
+
+        jPanel1.setBackground(new java.awt.Color(0, 40, 87));
+        jPanel1.setPreferredSize(new java.awt.Dimension(600, 23));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 23, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -287,54 +287,53 @@ public class Informe extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(Transaccion_text)
-                        .addGap(6, 6, 6)
-                        .addComponent(Transaccion, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(Nombre_text)
-                        .addGap(27, 27, 27)
-                        .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Estado_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Cuenta_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Fecha_text)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
+                        .addComponent(Fecha_D, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(Fecha_text1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Fecha_H, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Estado_text, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Cuenta_text)
-                            .addComponent(Nombre_text)
-                            .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Transaccion_text)
-                            .addComponent(Transaccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Estado_text)
-                            .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Fecha_text)
+                        .addComponent(Fecha_D, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Fecha_H, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Fecha_text1))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Estado_text)
+                        .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel6.setBackground(new java.awt.Color(244, 244, 244));
+        jPanel6.setPreferredSize(new java.awt.Dimension(600, 52));
 
         Buscar_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Buscar_text.setText("Buscar");
+        Buscar_text.setText("Cliente");
 
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
         Buscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 BuscarKeyReleased(evt);
@@ -349,6 +348,13 @@ public class Informe extends javax.swing.JFrame {
             }
         });
 
+        Descargar_button.setText("Descargar informe");
+        Descargar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Descargar_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -356,11 +362,13 @@ public class Informe extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Buscar_text)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Descargar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,88 +377,18 @@ public class Informe extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Buscar_text))
+                    .addComponent(Buscar_text)
+                    .addComponent(Descargar_button, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.setBackground(new java.awt.Color(244, 244, 244));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        Enviar_button.setText("Descargar informe");
-        Enviar_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Enviar_buttonActionPerformed(evt);
-            }
-        });
-
-        Fecha.setToolTipText("22/10/2023");
-        Fecha.setDateFormatString("d/M/yyyy");
-
-        Fecha_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Fecha_text.setText("Desde");
-
-        Fecha_text1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Fecha_text1.setText("Hasta");
-
-        Fecha1.setToolTipText("22/10/2023");
-        Fecha1.setDateFormatString("d/M/yyyy");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Fecha_text)
-                .addGap(18, 18, 18)
-                .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102)
-                .addComponent(Fecha_text1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(249, 249, 249))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Fecha_text)
-                        .addComponent(Fecha_text1))
-                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(Enviar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-
-        jPanel4.setBackground(new java.awt.Color(0, 40, 87));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,11 +397,7 @@ public class Informe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -471,34 +405,45 @@ public class Informe extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 948, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    String fecha_excel = "";
-    String fecha_excel_formateada = "";
+    String fechaFormatD = "";
+    String fechaFormatH = "";
+    Date fechaD;
+    Date fechaH;
+    String estado = "";
     int cantidad;
     
-    public void crearExcel(String fecha_excel, String fecha_excel_formateada) throws FileNotFoundException, IOException {
-        this.fecha_excel = fecha_excel;
-        this.Fecha_Actual_Formateada = fecha_excel_formateada;
+    public void crearExcel(Date fechaD, Date fechaH, String estado) throws FileNotFoundException, IOException {
         
-        String ExcelFileName = fecha_excel+".xlsx";
+        //this.fechaFormatD= fechaFormatD;
+        //this.fechaFormatH = fechaFormatH;
+        this.fechaD= fechaD;
+        this.fechaH = fechaH;
+        this.estado = estado;
+        
+        LocalDate FechaExcel = LocalDate.now();
+        DateTimeFormatter Fecha_Personalizada = DateTimeFormatter.ofPattern("d-M-yyyy");
+        String Fecha_Excel = FechaExcel.format(Fecha_Personalizada);
+    
+        String ExcelFileName = Fecha_Excel+".xlsx";
         File ExcelFile = new File(ExcelFileName);
                     
         boolean validacion_excel = ExcelFile.exists();
       
         Workbook book;
+        book = new XSSFWorkbook();
         
         if(!validacion_excel){
-            book = new XSSFWorkbook();
             org.apache.poi.ss.usermodel.Sheet sheet = book.createSheet("Movimientos");
             
             sheet.setColumnWidth(0, 4000);
@@ -513,6 +458,7 @@ public class Informe extends javax.swing.JFrame {
             sheet.setColumnWidth(9, 5000);  
             sheet.setColumnWidth(10, 4000);
             sheet.setColumnWidth(11, 4000);
+            sheet.setColumnWidth(12, 4000);
            
             Row rowuno = sheet.createRow(0);
             rowuno.createCell(0).setCellValue("InvoiceNumber");
@@ -527,60 +473,52 @@ public class Informe extends javax.swing.JFrame {
             rowuno.createCell(9).setCellValue("Seccion");
             rowuno.createCell(10).setCellValue("DueDate");
             rowuno.createCell(11).setCellValue("Fechas");
+            rowuno.createCell(12).setCellValue("Movimiento");
+            
+            String password = "12345";
+            sheet.protectSheet(password);
         }
-        
+
         else{
+            org.apache.poi.ss.usermodel.Sheet sheet = book.getSheet("Movimientos");
             FileInputStream fileInput = new FileInputStream(ExcelFile);       
             book = new XSSFWorkbook(fileInput);
-        }
-        
-        org.apache.poi.ss.usermodel.Sheet sheet = book.getSheet("Movimientos");
-        
-        String password = "12345";
-        sheet.protectSheet(password);
-        
-        try{
-            Connection con = (Connection) ConexionMySQL.obtenerConexion();
-            Statement stat = (Statement) con.createStatement();
-                    
-            consulta_Excel= "Select * From movimientos WHERE fecha LIKE '%" + fecha_excel_formateada + "%'";
+            
+            try{
+                Connection con = (Connection) ConexionMySQL.obtenerConexion();
+                Statement stat = (Statement) con.createStatement();
 
-            ResultSet ce = (ResultSet) stat.executeQuery(consulta_Excel);
+                FileInputStream archivo = new FileInputStream(Fecha_Excel+".xlsx");
+                XSSFWorkbook libro = new XSSFWorkbook(archivo);
+                XSSFSheet hoja = libro.getSheetAt(0);
 
-            ce.first();
+                int numero_Filas = hoja.getLastRowNum();
 
-            do{ 
-                cantidad = ce.getInt(3);
-                System.out.println(cantidad);
-            }
-            while(ce.next());
-        }
-            catch(ClassNotFoundException | SQLException ex){
-                java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }         
-        
-        try{
-            Connection con = (Connection) ConexionMySQL.obtenerConexion();
-            Statement stat = (Statement) con.createStatement();
-                    
-            //consulta_insertar= "Select * FROM ruta WHERE InvoiceNumber LIKE '%" + Factura.getText() + "%'";
+                numero_Filas = numero_Filas+1;
+                System.out.println(numero_Filas);
+                //CONTINUAR POR AQUI
 
-            ResultSet ci = (ResultSet) stat.executeQuery(consulta_insertar);
+                consulta_insertar = "SELECT * FROM facturas WHERE Estatus LIKE '%" + estado + "%' AND fecha BETWEEN '%" + fechaD + "%' AND '%" + fechaH + "%'";
 
-            ci.first();
+                ResultSet ci = (ResultSet) stat.executeQuery(consulta_insertar);
 
-            do{ 
-                Row row = sheet.createRow(cantidad);
-                for(int i=0; i<12; i++){
-                    row.createCell(i).setCellValue(ci.getString(i+1));
-                    //row.createCell(3).setCellFormula("1+3");
+                ci.first();
+
+                do{ 
+                    Row row = sheet.createRow(numero_Filas);
+                        for(int i=0; i<13; i++){
+                            row.createCell(i).setCellValue(ci.getString(i+1));
+                            //row.createCell(3).setCellFormula("1+3");
+                    }
                 }
+                while(ci.next());
             }
-            while(ci.next());
+                catch(ClassNotFoundException | SQLException ex){
+                    java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            System.out.println("Entró aquí");
         }
-            catch(ClassNotFoundException | SQLException ex){
-                java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        
         
         try {
             FileOutputStream fileout = new FileOutputStream(ExcelFileName);
@@ -589,66 +527,6 @@ public class Informe extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
         } catch (IOException ex) {
         }
-        /*
-            String password = "12345";
-
-            sheet.protectSheet(password);
-
-            Row row = sheet.createRow(0);
-            row.createCell(0).setCellValue("1");
-            row.createCell(1).setCellValue("2");
-            row.createCell(2).setCellValue("3");
-
-            Cell celda = row.createCell(3);
-            celda.setCellFormula(String.format("1+3", ""));
-
-            Row rowuno = sheet.createRow(1);
-            rowuno.createCell(0).setCellValue(7);
-            rowuno.createCell(1).setCellValue(8);
-
-            Cell celdauno = rowuno.createCell(2);
-            celdauno.setCellFormula(String.format("A%d+B%d", 2, 2));
-
-            try {
-                FileOutputStream fileout = new FileOutputStream(fecha_excel+".xlsX");
-                book.write(fileout);
-                fileout.close();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Por_entregar.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
- 
-            Workbook book = new XSSFWorkbook();
-            try{
-                Connection con = (Connection) ConexionMySQL.obtenerConexion();
-                Statement stat = (Statement) con.createStatement();
-
-                consulta_Excel= "Select * From movimientos WHERE fecha LIKE '%" + fecha_excel_formateada + "%'";
-
-                ResultSet ce = (ResultSet) stat.executeQuery(consulta_Excel);
-
-                ce.first();
-
-                do{ 
-                    cantidad = ce.getInt(3);
-                    System.out.print(cantidad);
-                }while(ce.next());
-            }
-            catch(ClassNotFoundException | SQLException ex){
-                java.util.logging.Logger.getLogger(Por_entregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }
-            
-            Row row = sheet.createRow(0);
-            for (int i = 0; i<cantidad; i++){
-            row.createCell(0).setCellValue(i);
-            row.createCell(1).setCellValue(i);
-            row.createCell(2).setCellValue(cantidad);
-            }
-        }
-        */
     }
 
     public void leerExcel() {
@@ -689,7 +567,7 @@ public class Informe extends javax.swing.JFrame {
             Logger.getLogger(Informe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+/*
     public void modificarExcel(String fecha_excel, String fecha_excel_formateada) {
         this.fecha_excel = fecha_excel;
         this.fecha_excel_formateada = fecha_excel_formateada;
@@ -726,6 +604,7 @@ public class Informe extends javax.swing.JFrame {
             Logger.getLogger(Informe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    */
     
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
         // TODO add your handling code here:
@@ -741,68 +620,53 @@ public class Informe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RegresarActionPerformed
 
-    private void Enviar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Enviar_buttonActionPerformed
+    private void Descargar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Descargar_buttonActionPerformed
         // TODO add your handling code here:
         
-        //Obtiene la fila que fue seleccionada por el usuario
-        int lista = table_factura.getSelectedRow();
-        String fa = table_factura.getValueAt(lista, 0).toString();
-        
         //Otorgamos la fecha del formulario a una variable para validarla mas adelante
-        Date fecha = Fecha.getDate();
+    
+        Date fechaD = Fecha_D.getDate();
+        Date fechaH = Fecha_H.getDate();
+        String estado = (String) Estado.getSelectedItem();
         
-        DefaultTableModel modelo= (DefaultTableModel) table_factura.getModel();
-        modelo.setRowCount(0);  
-        try{
-            //Conexión a la base de datos
-            Connection con = (Connection) ConexionMySQL.obtenerConexion();
-            Statement stat = (Statement) con.createStatement();
-
-                //Validacion en caso de que el usuario no ingrese una fecha
-              
-                    //Consulta para validar si existe algun elemento que contenga la fecha actual
-                    consulta_movi = "Select * FROM movimientos WHERE fecha = '"+Fecha_Actual_Formateada+"'";
-                    ResultSet fe = (ResultSet) stat.executeQuery(consulta_movi);
-                    
-                    //variable de tipo booleano que guarde el estado de la validacion
-                    boolean validacion_movimientos = fe.next();
-                    
-                    //System.out.println("Confirmacion movimientos: "+validacion_movimientos);
-                    //System.out.println("Confirmacion Excel: "+validacion_excel);
-                    
-                    //Accion en caso de que si exista un elemento en la tabla "movimientos" con la fecha actual y tambien que exista un excel con la fecha actual
-                    if(validacion_movimientos){
-                        System.out.println("Ambos existen");
-                        consulta_movi =  """
-                                UPDATE movimientos
-                                SET cantidad = cantidad + 1
-                                WHERE fecha = '%s'
-                            """.formatted(Fecha_Actual_Formateada);
-                        
-                        int filas_movimientos = stat.executeUpdate(consulta_movi);
-                        crearExcel(Fecha_Actual_Excel, Fecha_Actual_Formateada);
-                    }
-                    //Accion en caso de que no exista ni un elemento en la tabla "movimientos" ni el excel con la fecha actual
-                    else{
-                        System.out.println("Ninguno existe");
-                        consulta_movi =  """
-                              INSERT INTO movimientos (fecha, cantidad)
-                              SELECT '%s' AS fecha, '%s' AS cantidad;
-                          """.formatted(Fecha_Actual_Formateada, 1);
-                        
-                              int filas_movimientos = stat.executeUpdate(consulta_movi);
-                        crearExcel(Fecha_Actual_Excel, Fecha_Actual_Formateada);
-                        System.out.println("Guardado");
-                    }
-                    //Vuelve a vaciar los elementos en la pantalla
-                    facturasee();
-                    JOptionPane.showMessageDialog(null, "La factura fue enviada exitosamente a la ruta.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                }     
-        
-        catch(ClassNotFoundException | SQLException | IOException ex){
-            java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        //Validacion en caso de que el usuario no ingrese una fecha
+        if(fechaD == null || fechaH ==null || estado== null){
+            facturasee();
+            JOptionPane.showMessageDialog(null, "Los campos de las fechas no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_Enviar_buttonActionPerformed
+        
+        else{
+            SimpleDateFormat fechaPersonalizadaD = new SimpleDateFormat("d/M/yyyy");
+            String fechaFormatD = fechaPersonalizadaD.format(fechaD);
+
+            System.out.println(fechaD);
+            System.out.println(fechaFormatD);
+
+            SimpleDateFormat fechaPersonalizadaH = new SimpleDateFormat("d/M/yyyy");
+            String fechaFormatH = fechaPersonalizadaH.format(fechaH);
+
+            System.out.println(fechaH);
+            System.out.println(fechaFormatH);
+            System.out.println("El estado es: "+estado);
+            
+            try{
+                System.out.println("try");
+                //Conexión a la base de datos
+                Connection con = (Connection) ConexionMySQL.obtenerConexion();
+                Statement stat = (Statement) con.createStatement();
+
+                        facturasee();
+                        crearExcel(fechaD, fechaH, estado);
+                        JOptionPane.showMessageDialog(null, "La factura fue enviada exitosamente a la ruta.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        //Vuelve a vaciar los elementos en la pantalla
+                }     
+            catch(ClassNotFoundException | SQLException | IOException ex){
+                java.util.logging.Logger.getLogger(Informe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+    }//GEN-LAST:event_Descargar_buttonActionPerformed
 
     private void BuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BuscarKeyReleased
         // TODO add your handling code here:
@@ -832,16 +696,16 @@ public class Informe extends javax.swing.JFrame {
 
             //Factura.setText(rs.getString(1));
             //Factura.setCaretPosition(0);
-            Cuenta.setText(rs.getString(2));
-            Cuenta.setCaretPosition(0);
-            Nombre.setText(rs.getString(3));
-            Nombre.setCaretPosition(0);
+            //Cuenta.setText(rs.getString(2));
+            //Cuenta.setCaretPosition(0);
+            //Nombre.setText(rs.getString(3));
+            //Nombre.setCaretPosition(0);
             //Fiscal.setText(rs.getString(4));
             //Fiscal.setCaretPosition(0);
             //Monto.setText(rs.getString(5));
             //Monto.setCaretPosition(0);
-            Transaccion.setText(rs.getString(6));
-            Transaccion.setCaretPosition(0);
+            //Transaccion.setText(rs.getString(6));
+            //Transaccion.setCaretPosition(0);
             //Observacion_text_big.setText(rs.getString(7));
             //Observacion_text_big.setCaretPosition(0);
             if ("Por entregar".equals(rs.getString(8))){
@@ -888,16 +752,16 @@ public class Informe extends javax.swing.JFrame {
 
             //Factura.setText(rs.getString(1));
             //Factura.setCaretPosition(0);
-            Cuenta.setText(rs.getString(2));
-            Cuenta.setCaretPosition(0);
-            Nombre.setText(rs.getString(3));
-            Nombre.setCaretPosition(0);
+            //Cuenta.setText(rs.getString(2));
+            //Cuenta.setCaretPosition(0);
+            //Nombre.setText(rs.getString(3));
+            //Nombre.setCaretPosition(0);
             //Fiscal.setText(rs.getString(4));
             //Fiscal.setCaretPosition(0);
             //Monto.setText(rs.getString(5));
             //Monto.setCaretPosition(0);
-            Transaccion.setText(rs.getString(6));
-            Transaccion.setCaretPosition(0);
+            //Transaccion.setText(rs.getString(6));
+            //Transaccion.setCaretPosition(0);
             //Observacion_text_big.setText(rs.getString(7));
             //Observacion_text_big.setCaretPosition(0);
             if ("Por entregar".equals(rs.getString(8))){
@@ -927,9 +791,13 @@ public class Informe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_table_facturaMousePressed
 
-    private void CuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuentaActionPerformed
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CuentaActionPerformed
+    }//GEN-LAST:event_BuscarActionPerformed
+
+    private void EstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EstadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -972,27 +840,20 @@ public class Informe extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Buscar;
     private javax.swing.JLabel Buscar_text;
-    private javax.swing.JTextField Cuenta;
-    private javax.swing.JLabel Cuenta_text;
-    private javax.swing.JButton Enviar_button;
+    private javax.swing.JButton Descargar_button;
     private javax.swing.JComboBox<String> Estado;
     private javax.swing.JLabel Estado_text;
-    private com.toedter.calendar.JDateChooser Fecha;
-    private com.toedter.calendar.JDateChooser Fecha1;
+    private com.toedter.calendar.JDateChooser Fecha_D;
+    private com.toedter.calendar.JDateChooser Fecha_H;
     private javax.swing.JLabel Fecha_text;
     private javax.swing.JLabel Fecha_text1;
-    private javax.swing.JTextField Nombre;
-    private javax.swing.JLabel Nombre_text;
     private javax.swing.JButton Regresar;
-    private javax.swing.JTextField Transaccion;
-    private javax.swing.JLabel Transaccion_text;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;

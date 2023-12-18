@@ -122,7 +122,7 @@ public class Sesion extends javax.swing.JFrame {
         jLabel2.setText("Usuario:");
 
         user_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        user_text.setText("santosgon");
+        user_text.setText("gabrielmur");
         user_text.setToolTipText("");
         user_text.setActionCommand("<Not Set>");
         user_text.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +135,7 @@ public class Sesion extends javax.swing.JFrame {
         jLabel3.setText("Contraseña:");
 
         pass_text.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        pass_text.setText("1111");
+        pass_text.setText("1110");
 
         loggin_button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         loggin_button.setText("Ingresar");
